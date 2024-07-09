@@ -1,0 +1,142 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family:'Times New Roman', Times, serif;
+}
+
+/*.background-image {
+  background-image: url('./Images/pexels-ryutaro-5220033.jpg');
+  background-repeat:no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  width:100vw;
+
+}*/
+
+.background-video {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+
+.background-video video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+
+.title {
+  font-size: 150px; 
+  font-family:'Alex Brush', cursive; 
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px #000000;
+  font-weight: 100;
+
+  
+  
+}
+
+
+
+.subtitle {
+  font-size: 35px; 
+  font-family:'Alex Brush', cursive; 
+ color: whitesmoke;
+ text-shadow: 2px 2px 4px #000000;
+ font-weight: 100;
+ text-wrap:nowrap;
+ 
+
+  
+}
+
+.title-container {
+  position: absolute;
+  top: 83%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+.title-container.scrolled {
+  top: 30px;
+  left: 10px;
+  transform: none;
+}
+
+.subtitle-container {
+  position: absolute;
+  top: 95%; 
+  left: 53%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.subtitle-container.scrolled {
+  top: 50px; 
+  left: 20px;
+  transform: none;
+}
+
+/* navbar styles */
+
+.navbar {
+  background-color: #ffffff; /* light pink background */
+  padding: 1em; /* add some padding */
+  display: flex; /* make it a flex container */
+  justify-content: space-between; /* justify content to the left and right */
+  align-items: center; /* center vertically */
+}
+
+.logo {
+  font-size: 24px; /* make the logo a bit larger */
+  font-weight: bold; /* make the logo bold */
+  color: #000000; /* white text color */
+  text-decoration: none; /* remove underline */
+}
+
+.navbar ul {
+  list-style: none; /* remove bullet points */
+  margin: 0; /* remove margin */
+  padding: 0; /* remove padding */
+  display: flex; /* make it a flex container */
+}
+
+.navbar li {
+  margin-right: 20px; /* add some space between items */
+}
+
+.navbar a {
+  color: #000000; /* white text color */
+  text-decoration: none; /* remove underline */
+  transition: color 0.2s ease; /* add a transition effect */
+}
+
+.navbar a:hover {
+  color: #ffb6c1; /* light pink text color on hover */
+  text-decoration: underline; /* add underline on hover */
+  border-bottom: 2px solid #ffb6c1; /* add a 2px solid border on hover */
+}
+
+.search {
+  width: 100%;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
