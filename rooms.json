@@ -1,0 +1,61 @@
+[
+	{
+		"id":0,
+		"tier": "basic",
+		"capacity": 1,
+		"kitchen": true,
+		"smoking": false,
+		"price": 119.99
+	},
+	{
+		"id":1,
+		"tier":"basic",
+		"capacity":1,
+		"kitchen":false,
+		"smoking": true,
+		"price": 109.99
+	},
+	{
+		"id":2,
+		"tier":"basic",
+		"capacity":2,
+		"kitchen":true,
+		"smoking": false,
+		"price": 149.99
+	},
+	{
+		"tier":"basic",
+		"capacity":2,
+		"kitchen":false,
+		"smoking": true,
+		"price": 149.99
+	},
+	{
+		"tier":"business",
+		"capacity":1,
+		"kitchen":true,
+		"smoking": true,
+		"price": 169.99
+	},
+	{
+		"tier":"business",
+		"capacity":2,
+		"kitchen":true,
+		"smoking": true,
+		"price": 199.99
+	},
+	{
+		"tier":"vip",
+		"capacity":4,
+		"kitchen":true,
+		"smoking": true,
+		"price": 299.99
+	},
+	{
+		"tier":"vip",
+		"capacity":5,
+		"kitchen":true,
+		"smoking": true,
+		"price": 349.99
+	}
+]
