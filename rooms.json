@@ -7,7 +7,7 @@
 		"smoking": false,
 		"price": 119.99
 	},
-	{
+	{ 
 		"id":1,
 		"tier":"basic",
 		"capacity":1,
