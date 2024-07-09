@@ -24,13 +24,15 @@
 		"price": 149.99
 	},
 	{
+		"id":3,
 		"tier":"basic",
 		"capacity":2,
 		"kitchen":false,
 		"smoking": true,
 		"price": 149.99
 	},
-	{
+	{ 
+		"id":4,
 		"tier":"business",
 		"capacity":1,
 		"kitchen":true,
@@ -38,6 +40,7 @@
 		"price": 169.99
 	},
 	{
+		"id":5,
 		"tier":"business",
 		"capacity":2,
 		"kitchen":true,
@@ -45,6 +48,7 @@
 		"price": 199.99
 	},
 	{
+		"id":6,
 		"tier":"vip",
 		"capacity":4,
 		"kitchen":true,
@@ -52,6 +56,7 @@
 		"price": 299.99
 	},
 	{
+		"id":7,
 		"tier":"vip",
 		"capacity":5,
 		"kitchen":true,
