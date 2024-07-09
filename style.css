@@ -93,18 +93,31 @@
 /* navbar styles */
 
 .navbar {
-  background-color: #ffffff; /* light pink background */
+  background-color: #a2a0a0; 
   padding: 1em; /* add some padding */
   display: flex; /* make it a flex container */
   justify-content: space-between; /* justify content to the left and right */
   align-items: center; /* center vertically */
 }
 
+.logo-container {
+  display: flex; /* make it a flex container */
+  align-items: center; /* center vertically */
+}
+
 .logo {
-  font-size: 24px; /* make the logo a bit larger */
-  font-weight: bold; /* make the logo bold */
-  color: #000000; /* white text color */
-  text-decoration: none; /* remove underline */
+  margin-right: 10px; /* add some space between logo and title */
+}
+
+.logo img {
+  width: 30px; /* set the width of the logo image */
+  height: 30px; /* set the height of the logo image */
+}
+
+.navbartitle {
+  font-size: 24px; /* make the title a bit larger */
+  font-weight: bold; /* make the title bold */
+  color: #ffffff; /* black text color */
 }
 
 .navbar ul {
@@ -119,13 +132,13 @@
 }
 
 .navbar a {
-  color: #000000; /* white text color */
+  color: #ffffff; 
   text-decoration: none; /* remove underline */
   transition: color 0.2s ease; /* add a transition effect */
 }
 
 .navbar a:hover {
-  color: #ffb6c1; /* light pink text color on hover */
+  color: #ffb6c1; 
   text-decoration: underline; /* add underline on hover */
   border-bottom: 2px solid #ffb6c1; /* add a 2px solid border on hover */
 }
