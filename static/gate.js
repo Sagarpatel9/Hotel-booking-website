@@ -14,7 +14,7 @@ export const API = {
 		body:JSON.stringify(body)
 		})).json()
 	}
-	async admin_get(password){
+	async admin_get(password) {
 		return (await (await fetch("/admin", {
 			method:"GET",
 			body:JSON.stringify({
