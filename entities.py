@@ -1,5 +1,6 @@
 from enum import Enum
 from pydantic import BaseModel, PositiveInt
+from typing import Optional
 
 
 
@@ -10,8 +11,8 @@ class RoomTier(str, Enum):
     
 
 class RoomModel(BaseModel):
-    tier: RoomTier | None = None
-    capacity: PositiveInt | None = None
-    kitchen: bool | None = None
-    smoking: bool | None = None
-    price: float | None = None
+    tier: Optional[RoomTier] = None
+    capacity: Optional[PositiveInt] = None
+    kitchen: Optional[bool] = None
+    smoking: Optional[bool] = None
+    price: Optional[float] = None

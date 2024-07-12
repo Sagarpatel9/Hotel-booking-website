@@ -1,0 +1,233 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family:'Times New Roman', Times, serif;
+}
+ 
+/*.background-image {
+  background-image: url('./Images/pexels-ryutaro-5220033.jpg');
+  background-repeat:no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  width:100vw;
+
+}*/   
+
+.background-video {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+
+.background-video video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+
+.title {
+  font-size: 150px; 
+  font-family:'Alex Brush', cursive; 
+  color: whitesmoke;
+  text-shadow: 2px 2px 4px #000000;
+  font-weight: 100;
+}
+
+
+
+.subtitle {
+  font-size: 35px; 
+  font-family:'Alex Brush', cursive; 
+ color: whitesmoke;
+ text-shadow: 2px 2px 4px #000000;
+ font-weight: 100;
+ text-wrap:nowrap;
+}
+
+.title-container {
+  position: absolute;
+  top: 83%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+.title-container.scrolled {
+  top: 30px;
+  left: 10px;
+  transform: none;
+}
+
+.subtitle-container {
+  position: absolute;
+  top: 95%; 
+  left: 53%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.subtitle-container.scrolled {
+  top: 50px; 
+  left: 20px;
+  transform: none;
+}
+
+/* navbar styles */
+
+.navbar {
+  background-color: #a2a0a0; 
+  padding: 1em; /* add some padding */
+  display: flex; /* make it a flex container */
+  justify-content: space-between; /* justify content to the left and right */
+  align-items: center; /* center vertically */
+}
+
+.logo-container {
+  display: flex; /* make it a flex container */
+  align-items: center; /* center vertically */
+}
+
+.logo {
+  margin-right: 10px; /* add some space between logo and title */
+}
+
+.logo img {
+  width: 30px; /* set the width of the logo image */
+  height: 30px; /* set the height of the logo image */
+}
+
+.navbartitle {
+  font-size: 24px; /* make the title a bit larger */
+  font-weight: bold; /* make the title bold */
+  color: #ffffff; /* black text color */
+}
+
+.navbar ul {
+  list-style: none; /* remove bullet points */
+  margin: 0; /* remove margin */
+  padding: 0; /* remove padding */
+  display: flex; /* make it a flex container */
+}
+
+.navbar li {
+  margin-right: 20px; /* add some space between items */
+}
+
+.navbar a {
+  color: #ffffff; 
+  text-decoration: none; /* remove underline */
+  transition: color 0.2s ease; /* add a transition effect */
+}
+
+.navbar a:hover {
+  color: #ffb6c1; 
+  text-decoration: underline; /* add underline on hover */
+  border-bottom: 2px solid #ffb6c1; /* add a 2px solid border on hover */
+}
+
+#search-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #dbdbdb;
+}
+
+.search {
+  width: 70%;
+  margin: 1em 0;
+  background-color: #adadad;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & div {
+    margin: 10px;
+    & * { /* This selector selects the search bar's input/select elements */
+      height: 30px;
+      text-align: center;
+    }
+  }
+}
+#search-results {
+  width: 70%;
+
+  & .search-result-root {
+    width: 100%;
+    display: grid;
+    background-color: #f3f3f3;
+    grid-template-columns: 30% 30% 30%;
+    grid-template-rows:  auto auto auto auto auto auto auto;
+    & div {
+      width: auto;
+    }
+    & .search-result-image {
+      height: 200px;
+      width: auto;
+      grid-row-start: 1;
+      grid-row-end: 7;
+      grid-column-start: 1;
+      grid-column-end: 1;
+    }
+    & .search-result-tier {
+      text-align: right;
+      grid-row-start: 1;
+      grid-row-end: 1;
+      grid-column-start: 3;
+      grid-column-end: 3;
+    }
+    & .search-result-capacity {
+      text-align: right;
+      grid-row-start: 2;
+      grid-row-end: 2;
+      grid-column-start: 3;
+      grid-column-end: 3;
+    }
+    & .search-result-kitchen {
+      text-align: right;
+      grid-row-start: 3;
+      grid-row-end: 3;
+      grid-column-start: 3;
+      grid-column-end: 3;
+    }
+    & .search-result-smoking {
+      text-align: right;
+      grid-row-start: 4;
+      grid-row-end: 4;
+      grid-column-start: 3;
+      grid-column-end: 3;
+    }
+    & .search-result-price {
+      text-align: right;
+      grid-row-start: 5;
+      grid-row-end: 5;
+      grid-column-start: 3;
+      grid-column-end: 3;
+    }
+    & .search-result-book-button {
+      grid-row-start: 6;
+      grid-row-end: 6;
+      grid-column-start: 3;
+      grid-column-end: 3;
+    }
+    & .search-result-view-button {
+      grid-row-start: 6;
+      grid-row-end: 6;
+      grid-column-start: 2;
+      grid-column-end: 2;
+    }
+  }
+}
+
+

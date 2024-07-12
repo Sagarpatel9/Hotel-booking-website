@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="./gate.js" type="module"></script>
+    <script src="./main.js" type="module"></script>
+</head>
+
+<body>
+
+  <div class="background-video">
+  
+      <video autoplay loop muted>
+        <source src="./Images/8487916-uhd_3840_2160_24fps.mp4" type="video/mp4">
+      </video>
+      <div class="title-container">
+        <h1 class="title">Sakura</h1>
+      </div>
+      <div class="subtitle-container">
+        <p class="subtitle">-Where Every Stay Blossoms into a Beautiful Memory</p>
+      </div>
+  
+  
+  </div>
+
+  <nav class="navbar">
+  <a href="#" class="logo">Sakura</a>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">Login</a></li>
+  </ul>
+  </nav>
+
+  <div id="search-root">
+    <div class="search">
+      <div>
+        SEARCH:
+      </div>
+      <div>
+        <select name="Tier" id="search-tier">
+          <option value="" selected disabled>Tier</option>
+          <option value="basic">Basic</option>
+          <option value="business">Business</option>
+          <option value="vip">Vip</option>
+        </select>
+      </div>
+      <div>
+        <select name="Capacity" id="search-capacity">
+          <option value="" selected disabled>Capacity</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div>
+        <label><input type="checkbox" id="search-kitchen" name="kitchen" checked />Kitchen</label>
+      </div>
+      <div>
+        <label><input type="checkbox" id="search-smoking" name="smoking" />Smoking</label>
+      </div>
+    </div>
+  
+    <div id="search-results">
+  
+    </div>
+  </div>
+</body>
+</html>

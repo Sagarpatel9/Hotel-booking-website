@@ -1,7 +1,8 @@
 import hashlib
 import functools as ft
+from typing import Optional
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Body
 from fastapi.staticfiles import StaticFiles
 from entities import RoomModel
 from search import Search
@@ -23,19 +24,20 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get('/search')
-def search(room_search_inst: RoomModel):
-    # validate the search
-    room_query = RoomModel(**room_search_inst.model_dump())
-    
+@app.post('/search')
+async def search(room: Optional[RoomModel] = Body(None)):
     # find relevant room types:
 
     search = Search()
 
-    search.narrow("tier", room_query.tier.value)
-    search.narrow("capacity", room_query.capacity)
-    search.narrow("kitchen", room_query.kitchen)
-    search.narrow("smoking", room_query.smoking)
+    if room.tier is not None:
+        search.narrow("tier", room.tier.value)
+    if room.capacity is not None:
+        search.narrow("capacity", room.capacity)
+    if room.kitchen is not None:
+        search.narrow("kitchen", room.kitchen)
+    if room.smoking is not None:
+        search.narrow("smoking", room.smoking)
 
     return search.data
 
@@ -51,15 +53,15 @@ def validate_admin_login(login: AdminLogin):
 
 
 
-@app.get("/admin")
-def admin_get(login: AdminLogin):
+@app.put("/admin")
+async def admin_put(login: AdminLogin):
     if validate_admin_login(login):
         return {"success": True, "data":Search().data}
     else:
         return {"success":False, "msg": "Invalid auth."}
 
 @app.post("/admin")
-def admin_post(login: AdminLogin, room: RoomModel):
+async def admin_post(login: AdminLogin, room: RoomModel):
     if validate_admin_login(login):
         data = Search().data
         data.append({id:len(data), **room.model_dump()})
@@ -68,8 +70,8 @@ def admin_post(login: AdminLogin, room: RoomModel):
         return {"success": False, "msg": "Invalid auth."}
 
 
-@app.put("/admin")
-def admin_put(login: AdminLogin, room: RoomModel, id:int):
+@app.patch("/admin")
+async def admin_patch(login: AdminLogin, room: RoomModel, id:int):
     if validate_admin_login(login):
         data = Search().data
         for d in data:
@@ -92,7 +94,7 @@ def admin_put(login: AdminLogin, room: RoomModel, id:int):
         return {"success": False, "msg": "Invalid auth."}
 
 @app.delete("/admin")
-def admin_delete(login: AdminLogin, id:int):
+async def admin_delete(login: AdminLogin, id:int):
     if validate_admin_login(login):
         data = Search().data
         for i in range(len(data)):

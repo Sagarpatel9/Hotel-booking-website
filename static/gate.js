@@ -1,65 +1,83 @@
 // Easy api for crud operations on backend
 export const API = {
-	async search(tier = null, capacity = null, kitchen = null, smoking = null) {
-		body = {}
-		if (tier !== null)
-			body.tier = tier
-		if (capacity !== null)
-			body.capacity = capacity
-		if (kitchen !== null)
-			body.kitchen = kitchen
-		if (smoking !== null)
-			body.smoking = smoking
-		return await (await fetch("/search", {
-		body:JSON.stringify(body)
-		})).json()
-	}
+	reactive_callback: async (ret)=>{},
+	async search({tier = undefined, capacity = undefined, kitchen = undefined, smoking = undefined}) {
+		let body = {tier, capacity, kitchen, smoking}
+
+		let ret = await (await fetch("/search", {
+			method:"POST",
+			body:JSON.stringify(body),
+			headers: {
+				"Content-Type": "application/json",
+			},
+			})).json()
+
+		console.log("ret", ret)
+		
+		await this.reactive_callback(ret);
+		
+		return ret;
+	},
 	async admin_get(password) {
 		return (await (await fetch("/admin", {
-			method:"GET",
+			method:"PUT",
 			body:JSON.stringify({
 				password:password
-			})
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
 		})).json())["Success"]
-	}
-	async admin_update(password, id, tier = null, capacity = null, kitchen = null, smoking = null, price = null){
-		body = {password:password, id:id}
-		if (tier !== null)
-			body.tier = tier
-		if (capacity !== null)
-			body.capacity = capacity
-		if (kitchen !== null)
-			body.kitchen = kitchen
-		if (smoking !== null)
-			body.smoking = smoking
-		if (price !== null)
-			body.price = price
-		return (await (await fetch("/admin", {
-			method:"PUT",
-			body:JSON.stringify(body)
-		})).json())["Success"]
-	}
+	},
+	async admin_update(password, id, tier = undefined, capacity = undefined, kitchen = undefined, smoking = undefined){
+		let body = {password, id, tier, capacity, kitchen, smoking}
+
+		let ret = (await (await fetch("/admin", {
+				method:"PATCH",
+				body:JSON.stringify(body),
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})).json())["Success"]
+		
+		await this.search({});
+		
+		return ret;
+	},
 	async admin_delete(password, id){
-		return (await (await fetch("/admin", {
+		let ret =  (await (await fetch("/admin", {
 			method:"DELETE",
 			body:JSON.stringify({
 				password:password,
 				id:id
-			})
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
 		})).json())["Success"]
-	}
+
+		await this.search({});
+
+		return ret;
+	},
 	async admin_add(password, tier, capacity, kitchen, smoking, price){
-		return (await (await fetch("/admin", {
+		let ret = (await (await fetch("/admin", {
 			method:"POST",
 			body:JSON.stringify({
-				password:password,
-				tier:tier,
-				capacity:capacity,
-				kitchen:kitchen,
-				smoking:smoking,
-				price:price
-			})
+				password,
+				tier,
+				capacity,
+				kitchen,
+				smoking,
+				price
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
 		})).json())["Success"]
-	}
 
+		await this.search({});
+
+		return ret
+	},
 }
