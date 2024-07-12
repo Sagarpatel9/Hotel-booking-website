@@ -90,3 +90,17 @@ def admin_put(login: AdminLogin, room: RoomModel, id:int):
         return {"success":True}
     else:
         return {"success": False, "msg": "Invalid auth."}
+
+@app.delete("/admin")
+def admin_delete(login: AdminLogin, id:int):
+    if validate_admin_login(login):
+        data = Search().data
+        for i in range(len(data)):
+            if data[i]["id"] == id:
+                del data[i]
+                break
+        json.dump(data, fp:=open("./rooms.json", "w"))
+        fp.close()
+        return {"success":True}
+    else:
+        return {"success": False, "msg": "Invalid auth."}
