@@ -138,7 +138,7 @@
 }
 
 .top-nav a.active {
-  background-color: #333; 
+   
   color: #fff; 
   border-bottom: 2px solid #fff; 
   box-shadow: 0px 2px 0px #000; 
@@ -168,8 +168,6 @@
 .top-nav li:last-child:hover {
   background-color: #ffffff;
 }
-
-
 
 section {
   display: none; 
