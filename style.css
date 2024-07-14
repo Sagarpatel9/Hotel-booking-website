@@ -88,13 +88,23 @@
 
 
 /* Top nav */
+
+body.sticky-nav .top-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
 .top-nav {
   background-color: #e4cbcb;
   padding: 1em;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: top 0.3s;
 }
+
 
 .logo-navtitle {
   display: flex;
@@ -111,6 +121,7 @@
   width: 30px; 
   height: 30px; 
   margin-right: 10px;
+
 }
 
 .navtitle {

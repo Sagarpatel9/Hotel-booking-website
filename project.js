@@ -92,3 +92,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+/*top-nav*/
+document.addEventListener('DOMContentLoaded', function () {
+    const nav = document.querySelector('.top-nav');
+    const videoSection = document.querySelector('.background-video');
+    
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > videoSection.offsetHeight) {
+        document.body.classList.add('sticky-nav');
+      } else {
+        document.body.classList.remove('sticky-nav');
+      }
+    });
+  });
+  
