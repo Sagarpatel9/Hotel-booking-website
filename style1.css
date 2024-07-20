@@ -192,48 +192,6 @@ section.active {
 
 
 /*Home section*/
-.services {
-  padding: 50px 0;
-  background-color: #f9f9f9;
-  text-align: center;
-}
-
-.container {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.section-title {
-  font-size: 2.5em;
-  margin-bottom: 20px;
-}
-
-.services-list {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.service-item {
-  width: 30%;
-  margin: 15px 0;
-}
-
-.service-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-.service-item h3 {
-  font-size: 1.5em;
-  margin-top: 10px;
-}
-
-.service-item p {
-  font-size: 1em;
-  margin-top: 10px;
-}
 
 
 
