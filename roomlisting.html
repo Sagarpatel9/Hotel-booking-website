@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    <script src="project.js" defer></script>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="logo">
+            <img src="./image/6475165.png" alt="Company Logo"> 
+            <div class="navtitle">Sakura</div>
+        </div>
+        <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About Us</a></li>
+            <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            <li><a href="reservation.html" class="nav-link">Reservation</a></li>
+            <li class="book-now"><a href="roomsearch.html" class="nav-link">BOOK NOW</a></li>
+        </ul>
+    </nav>
+  
+    <!--basic single bed and double bed lisitng-->
+    <div class="room-listing">
+        <div class="room">
+            <div class="room-image-slider" id="slider1">
+                <div class="slider">
+                    <div class="slide"><img src="./image/basic single bed /1 king bed.webp" alt="Room Image 2"></div>
+                    <div class="slide"><img src="./image/basic single bed /restroom 1 king bed.webp" alt="Room Image 3"></div>
+                </div>
+                <button class="prev" onclick="moveSlide(-1, 'slider1')">&#10094;</button>
+                <button class="next" onclick="moveSlide(1, 'slider1')">&#10095;</button>
+                <span class="tier-label">Basic</span>
+            </div>
+            <div class="room-details">
+                <h3>1 King Bed</h3>
+                <p>Capacity: 1 bed</p>
+                <p>Check-in: Jul 24, 2024</p>
+                <p>Check-out: Jul 31, 2024</p>
+                <p>Smoking: No</p>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">Amenities and Details &#9660;</button>
+                    <div class="dropdown-content">
+                        <p>Free Wi-Fi</p>
+                        <p>Air Conditioning</p>
+                        <p>Room Service</p>
+                        <p>Private Bathroom</p>
+                    </div>
+                </div>
+    
+                <div class="price">
+                    <span class="price-per-night">$185 per night</span>
+                    <button class="reserve-btn">RESERVE NOW</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="room-listing">
+        <div class="room">
+            <div class="room-image-slider" id="slider2">
+                <div class="slider">
+                    <div class="slide"><img src="./image/basic double bed/double bed basic.webp" alt="Room Image 2"></div>
+                    <div class="slide"><img src="./image/basic double bed/basic double bed restroom.webp" alt="Room Image 3"></div>
+                </div>
+                <button class="prev" onclick="moveSlide(-1, 'slider2')">&#10094;</button>
+                <button class="next" onclick="moveSlide(1, 'slider2')">&#10095;</button>
+                <span class="tier-label">Basic</span>
+            </div>
+            <div class="room-details">
+                <h3>2 King Bed</h3>
+                <p>Capacity: 2 bed</p>
+                <p>Check-in: Jul 24, 2024</p>
+                <p>Check-out: Jul 31, 2024</p>
+                <p>Smoking: No</p>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">Amenities and Details &#9660;</button>
+                    <div class="dropdown-content">
+                        <p>Free Wi-Fi</p>
+                        <p>Air Conditioning</p>
+                        <p>Room Service</p>
+                        <p>Private Bathroom</p>
+                    </div>
+                </div>
+    
+                <div class="price">
+                    <span class="price-per-night">$185 per night</span>
+                    <button class="reserve-btn">RESERVE NOW</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--bussiness single bed and double bed listing-->
+    <div class="room-listing">
+        <div class="room">
+            <div class="room-image-slider" id="slider3">
+                <div class="slider">
+                    <div class="slide"><img src="./image/bussiness single bed/single bed.webp" alt="Room Image 2"></div>
+                    <div class="slide"><img src="./image/bussiness single bed/restroom bussiness.webp" alt="Room Image 3"></div>
+                </div>
+                <button class="prev" onclick="moveSlide(-1, 'slider3')">&#10094;</button>
+                <button class="next" onclick="moveSlide(1, 'slider3')">&#10095;</button>
+                <span class="tier-label">Business</span>
+            </div>
+            <div class="room-details">
+                <h3>1 King Bed</h3>
+                <p>Capacity: 1 bed</p>
+                <p>Check-in: Jul 24, 2024</p>
+                <p>Check-out: Jul 31, 2024</p>
+                <p>Smoking: No</p>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">Amenities and Details &#9660;</button>
+                    <div class="dropdown-content">
+                        <p>Free Wi-Fi</p>
+                        <p>Air Conditioning</p>
+                        <p>Room Service</p>
+                        <p>Private Bathroom</p>
+                    </div>
+                </div>
+    
+                <div class="price">
+                    <span class="price-per-night">$185 per night</span>
+                    <button class="reserve-btn">RESERVE NOW</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="room-listing">
+        <div class="room">
+            <div class="room-image-slider" id="slider4">
+                <div class="slider">
+                    <div class="slide"><img src="./image/bussiness double bed/bussiness double bed.webp" alt="Room Image 2"></div>
+                    <div class="slide"><img src="./image/bussiness double bed/bussiness double bed restroom.webp" alt="Room Image 3"></div>
+                </div>
+                <button class="prev" onclick="moveSlide(-1, 'slider4')">&#10094;</button>
+                <button class="next" onclick="moveSlide(1, 'slider4')">&#10095;</button>
+                <span class="tier-label">Business</span>
+            </div>
+            <div class="room-details">
+                <h3>2 King Bed</h3>
+                <p>Capacity: 2 bed</p>
+                <p>Check-in: Jul 24, 2024</p>
+                <p>Check-out: Jul 31, 2024</p>
+                <p>Smoking: No</p>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">Amenities and Details &#9660;</button>
+                    <div class="dropdown-content">
+                        <p>Free Wi-Fi</p>
+                        <p>Air Conditioning</p>
+                        <p>Room Service</p>
+                        <p>Private Bathroom</p>
+                    </div>
+                </div>
+    
+                <div class="price">
+                    <span class="price-per-night">$185 per night</span>
+                    <button class="reserve-btn">RESERVE NOW</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--VIP single and double bed room listing-->
+
+    <div class="room-listing">
+        <div class="room">
+            <div class="room-image-slider" id="slider5">
+                <div class="slider">
+                    <div class="slide"><img src="./image/vip single bed/vip single bed.webp" alt="Room Image 2"></div>
+                    <div class="slide"><img src="./image/vip single bed/vip restroom.webp" alt="Room Image 3"></div>
+                </div>
+                <button class="prev" onclick="moveSlide(-1, 'slider5')">&#10094;</button>
+                <button class="next" onclick="moveSlide(1, 'slider5')">&#10095;</button>
+                <span class="tier-label">VIP</span>
+            </div>
+            <div class="room-details">
+                <h3>1 King Bed</h3>
+                <p>Capacity: 2 bed</p>
+                <p>Check-in: Jul 24, 2024</p>
+                <p>Check-out: Jul 31, 2024</p>
+                <p>Smoking: No</p>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">Amenities and Details &#9660;</button>
+                    <div class="dropdown-content">
+                        <p>Free Wi-Fi</p>
+                        <p>Air Conditioning</p>
+                        <p>Room Service</p>
+                        <p>Private Bathroom</p>
+                    </div>
+                </div>
+    
+                <div class="price">
+                    <span class="price-per-night">$185 per night</span>
+                    <button class="reserve-btn">RESERVE NOW</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="room-listing">
+        <div class="room">
+            <div class="room-image-slider" id="slider6">
+                <div class="slider">
+                    <div class="slide"><img src="./image/vip double bed/vipdouble bed .webp" alt="Room Image 2"></div>
+                    <div class="slide"><img src="./image/vip double bed/vip double bed restroom.webp" alt="Room Image 3"></div>
+                </div>
+                <button class="prev" onclick="moveSlide(-1, 'slider6')">&#10094;</button>
+                <button class="next" onclick="moveSlide(1, 'slider6')">&#10095;</button>
+                <span class="tier-label">VIP</span>
+            </div>
+            <div class="room-details">
+                <h3>2 King Bed</h3>
+                <p>Capacity: 2 bed</p>
+                <p>Check-in: Jul 24, 2024</p>
+                <p>Check-out: Jul 31, 2024</p>
+                <p>Smoking: No</p>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">Amenities and Details &#9660;</button>
+                    <div class="dropdown-content">
+                        <p>Free Wi-Fi</p>
+                        <p>Air Conditioning</p>
+                        <p>Room Service</p>
+                        <p>Private Bathroom</p>
+                    </div>
+                </div>
+    
+                <div class="price">
+                    <span class="price-per-night">$185 per night</span>
+                    <button class="reserve-btn">RESERVE NOW</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

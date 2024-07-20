@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="./style.css">
     <script src="./gate.js" type="module"></script>
     <script src="./main.js" type="module"></script>
+    <script src="./project.js"></script>
 </head>
 
 <body>
@@ -11,7 +12,7 @@
   <div class="background-video">
   
       <video autoplay loop muted>
-        <source src="./Images/8487916-uhd_3840_2160_24fps.mp4" type="video/mp4">
+        <source src="./images/8487916-uhd_3840_2160_24fps.mp4" type="video/mp4">
       </video>
       <div class="title-container">
         <h1 class="title">Sakura</h1>
@@ -23,48 +24,65 @@
   
   </div>
 
-  <nav class="navbar">
-  <a href="#" class="logo">Sakura</a>
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Gallery</a></li>
-    <li><a href="#">Login</a></li>
-  </ul>
+  <nav class="top-nav">
+    <div class="logo">
+      <img src="./images/6475165.png" alt="Company Logo"> 
+      <div class="navtitle">Sakura</div>
+    </div>
+    
+    <ul>
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about-us" class="nav-link">About Us</a></li>
+      <li><a href="#contact" class="nav-link">Contact Us</a></li>
+      <li><a href="#reservation" class="nav-link">Reservation</a></li>
+      <li class="book-now"><a href="./search.html" class="nav-link">BOOK NOW</a></li>
+    </ul>
   </nav>
 
-  <div id="search-root">
-    <div class="search">
-      <div>
-        SEARCH:
+  <section id="book">
+    <div class="home-image">
+      <img src="./images/pexels-ryutaro-5220061.jpg" alt="Home Image">
+      <h2 class="slogan">Your Adventure Starts Here</h2>
+
+      
+      <div class="search-form">
+          <form id="hotel-search-form">
+              <div class="form-group">
+                  <label for="checkin">Check-in:</label>
+                  <input type="date" id="checkin" name="checkin" required>
+              </div>
+              <div class="form-group">
+                  <label for="checkout">Check-out:</label>
+                  <input type="date" id="checkout" name="checkout" required>
+              </div>
+              <div class="form-group">
+                  <label for="rooms">Rooms:</label>
+                  <input type="number" id="rooms" name="rooms" min="1" value="1" required>
+              </div>
+              <div class="form-group">
+                  <label for="guests">Guests:</label>
+                  <input type="number" id="guests" name="guests" min="1" value="1" required>
+              </div>
+              <div class="form-group">
+                  <button type="submit">Search</button>
+              </div>
+          </form>
       </div>
-      <div>
-        <select name="Tier" id="search-tier">
-          <option value="" selected disabled>Tier</option>
-          <option value="basic">Basic</option>
-          <option value="business">Business</option>
-          <option value="vip">Vip</option>
-        </select>
-      </div>
-      <div>
-        <select name="Capacity" id="search-capacity">
-          <option value="" selected disabled>Capacity</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </div>
-      <div>
-        <label><input type="checkbox" id="search-kitchen" name="kitchen" checked />Kitchen</label>
-      </div>
-      <div>
-        <label><input type="checkbox" id="search-smoking" name="smoking" />Smoking</label>
-      </div>
-    </div>
+   </div>
+ 
+  </section>
+
+
+
+
+
+
+
   
-    <div id="search-results">
-  
-    </div>
-  </div>
+
+
+
+
+
 </body>
 </html>

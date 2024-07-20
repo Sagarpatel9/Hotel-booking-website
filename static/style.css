@@ -1,22 +1,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes:wght@300;400;500;600;700&display=swap');
+
 *{
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
   font-family:'Times New Roman', Times, serif;
 }
- 
-/*.background-image {
-  background-image: url('./Images/pexels-ryutaro-5220033.jpg');
-  background-repeat:no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-  background-size: cover;
-  height: 100vh;
-  width:100vw;
-
-}*/   
 
 .background-video {
   position: relative;
@@ -42,6 +33,9 @@
   color: whitesmoke;
   text-shadow: 2px 2px 4px #000000;
   font-weight: 100;
+
+  
+  
 }
 
 
@@ -53,6 +47,9 @@
  text-shadow: 2px 2px 4px #000000;
  font-weight: 100;
  text-wrap:nowrap;
+ 
+
+  
 }
 
 .title-container {
@@ -84,58 +81,221 @@
   transform: none;
 }
 
-/* navbar styles */
 
-.navbar {
-  background-color: #a2a0a0; 
-  padding: 1em; /* add some padding */
-  display: flex; /* make it a flex container */
-  justify-content: space-between; /* justify content to the left and right */
-  align-items: center; /* center vertically */
+
+
+/* Top nav */
+
+body.sticky-nav .top-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
-.logo-container {
-  display: flex; /* make it a flex container */
-  align-items: center; /* center vertically */
+.top-nav {
+  background-color: #e4cbcb;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: top 0.3s;
+}
+
+
+.logo-navtitle {
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-  margin-right: 10px; /* add some space between logo and title */
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
 }
 
 .logo img {
-  width: 30px; /* set the width of the logo image */
-  height: 30px; /* set the height of the logo image */
+  width: 30px; 
+  height: 30px; 
+  margin-right: 10px;
+
 }
 
-.navbartitle {
-  font-size: 24px; /* make the title a bit larger */
-  font-weight: bold; /* make the title bold */
-  color: #ffffff; /* black text color */
+.navtitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 1px 1px 0px #000000;
 }
 
-.navbar ul {
-  list-style: none; /* remove bullet points */
-  margin: 0; /* remove margin */
-  padding: 0; /* remove padding */
-  display: flex; /* make it a flex container */
+.top-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
-.navbar li {
-  margin-right: 20px; /* add some space between items */
+.top-nav li {
+  margin-right: 20px;
 }
 
-.navbar a {
+.top-nav a {
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 1px 1px 0px #000000;
+}
+
+.top-nav a.active {
+   
+  color: #fff; 
+  border-bottom: 2px solid #fff; 
+  box-shadow: 0px 2px 0px #000; 
+}
+
+.top-nav a:hover {
   color: #ffffff; 
-  text-decoration: none; /* remove underline */
-  transition: color 0.2s ease; /* add a transition effect */
+  border-bottom: 2px solid #ffffff; 
+  box-shadow: 0px 2px 0px #000;
+  
 }
 
-.navbar a:hover {
-  color: #ffb6c1; 
-  text-decoration: underline; /* add underline on hover */
-  border-bottom: 2px solid #ffb6c1; /* add a 2px solid border on hover */
+.top-nav li:last-child {
+  background-color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px; 
+  cursor: pointer;
+  border: 1px solid #000000; 
 }
+
+.top-nav li:last-child a {
+  color: #000000;
+  font-weight: bold; 
+  text-shadow: none;;
+}
+
+.top-nav li:last-child:hover {
+  background-color: #ffffff;
+}
+
+section {
+  display: none; 
+  width: 100vw; 
+  height: 100vh; 
+  
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+section.active {
+    display: block;
+}
+
+
+
+/*Home section*/
+
+
+
+/* Book now */
+.home-image {
+  width: 100vw; 
+  height: 100vh; 
+  object-fit: cover; 
+  margin: 0; 
+  padding: 0; 
+  position: relative; 
+}
+
+.home-image img {
+  width: 100%; 
+  height: 50%; 
+  object-fit: cover; 
+}
+
+.slogan {
+  position: absolute; 
+  bottom: 80%; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  font-family: 'Great Vibes', cursive;
+  font-size: 36px; 
+  color: #ffffff; 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  text-decoration: underline; 
+  text-decoration-color: #ffcc00; 
+  text-decoration-thickness: 5px; 
+  text-underline-offset: 10px; 
+}
+
+
+/*search bar*/
+.search-form {
+  position: absolute;
+  top: 50%; /* Adjusted vertical positioning */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95); /* Increased opacity for better visibility */
+  padding: 30px; /* Increased padding for better spacing */
+  border-radius: 20px; /* Rounded corners */
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box-shadow for depth */
+}
+
+.search-form form {
+  display: flex;
+  flex-wrap: wrap; /* Added flex-wrap for responsive layout */
+  justify-content: space-between;
+}
+
+.search-form .form-group {
+  flex: 1 0 45%; /* Two columns on larger screens */
+  margin: 0 10px;
+}
+
+.search-form .form-group label {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: bold;
+}
+
+.search-form .form-group input[type="date"],
+.search-form .form-group input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  font-size: 1rem;
+}
+
+.search-form .form-group button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 20px;
+  transition: background-color 0.3s ease; 
+}
+
+.search-form .form-group button:hover {
+  background-color: #0056b3; 
+}
+
+
+
+
+
+
+
+
 
 #search-root {
   display: flex;
