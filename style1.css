@@ -9,6 +9,7 @@
   font-family:'Times New Roman', Times, serif;
 }
 
+/* BEGINING PAGE WITH VIDEO AND TITLE*/
 .background-video {
   position: relative;
   overflow: hidden;
@@ -80,9 +81,9 @@
   left: 20px;
   transform: none;
 }
+/* END OF BEGINING PAGE*/
 
-
-/* Top nav */
+/* TOP NAVIGATION BAR*/
 
 body.sticky-nav .top-nav {
   position: fixed;
@@ -181,28 +182,321 @@ section {
   width: 100vw; 
   height: 100vh; 
   background-color: #f7f7f7;
-  border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  box-shadow: none;
 }
 
 
 section.active {
    display: block;
 }
+/* END OF TOP NAVIGATION BAR*/
 
 
-/*Home section*/
+/*HOME*/
+
+.intro-section {
+  display: block; 
+  position: relative;
+  text-align: center;
+  padding: 50px 20px;
+  background: url('./image/pexels-mickhaupt-5140710.jpg') no-repeat center center;
+  background-size: cover;
+  color: #ffffff;
+  height: 100vh; 
+  border: none; /* Ensure no border */
+}
+
+
+/* Content box styling */
+
+.content-box {
+  position: absolute; 
+  top: 100%; 
+  left: 15%; 
+  transform: translate(-25%, -50%); 
+  background: rgb(255, 255, 255); 
+  padding: 60px 40px;
+  border-radius: 10px;
+  width: 30%; 
+  max-width: 500px;
+  text-align: left; 
+  border: none; 
+}
+
+.section-slogan {
+  font-size: 1.2em;
+  color: #333;
+  margin: 0;
+}
+
+/* END OF HOME*/
+
+
+/*ABOUT US*/
+
+/* Keyframes for the gradient animation */
+@keyframes gradientHover {
+  0% {
+    border-image-source: linear-gradient(45deg, #ff69b4, #ffffff, #000000);
+  }
+  50% {
+    border-image-source: linear-gradient(135deg, #ffffff, #000000, #ff69b4);
+  }
+  100% {
+    border-image-source: linear-gradient(225deg, #000000, #ff69b4, #ffffff);
+  }
+}
+
+/* Hotel Policies Section */
+#hotel-policies {
+  display: block;
+  background-color: #ffffff;
+  padding: 50px; 
+  margin: 50px auto; 
+  max-width: 1000px; 
+  font-family: 'Arial', sans-serif;
+  min-height: 180vh;
+  border: 15px solid;
+  border-image-slice: 1;
+  border-width: 9px;
+  border-image-source: linear-gradient(45deg, #f7c0dc, #ffffff, #000000);
+  transition: border-image-source 0.5s ease;
+}
+
+#hotel-policies:hover {
+  animation: gradientHover 2s infinite alternate;
+}
+
+#hotel-policies h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+#hotel-policies h3 {
+  font-size: 1.5em;
+  color: #000000;
+  margin-top: 20px;
+  border-bottom: 2px solid #ff69b4; 
+  padding-bottom: 5px;
+}
+
+#hotel-policies p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #000000;
+  margin: 10px 0;
+}
+
+#hotel-policies p strong {
+  color: #000000;
+  font-weight: bold;
+}
+
+#hotel-policies a {
+  color: #ff69b4; 
+  text-decoration: none;
+}
+
+#hotel-policies a:hover {
+  text-decoration: underline;
+}
+
+/* Hotel Amenities Section */
+.amenities {
+  display: block;
+  background-color: #ffffff;
+  padding: 50px 20px;
+  text-align: center;
+  margin: 50px auto; 
+  font-family: 'Arial', sans-serif;
+  max-width: 2000px; 
+}
+
+.amenities:hover {
+  animation: gradientHover 2s infinite alternate;
+}
+
+.amenities h2 {
+  font-size: 2.5em;
+  color: #000000;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.amenities-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 0 20px;
+  flex-wrap: wrap;
+}
+
+.amenities-column {
+  flex: 1;
+  margin: 10px;
+  padding: 30px;
+  background: #fff;
+  transition: transform 0.3s ease;
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 9px;
+  border-image-source: linear-gradient(45deg, #fcc6e1, #ffffff, #000000);
+  transition: border-image-source 0.5s ease;
+}
+
+.amenities-column:hover {
+  transform: translateY(-10px);
+  animation: gradientHover 2s infinite alternate;
+}
+
+.amenities-column h3 {
+  color: #000000;
+  border-bottom: 2px solid #ff69b4;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.amenities-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.amenities-column ul li {
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.2em;
+  font-weight: 400;
+  color: #000000;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.amenities-column ul li:last-child {
+  border-bottom: none;
+}
+
+.amenities-column ul li:hover {
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/*glims of room(romm type)*/
+.glimpse-of-rooms {
+  display: block;
+  padding: 50px 20px;
+  background-color: #ffffff;
+  text-align: center;
+  margin: 50px auto; 
+  font-family: 'Arial', sans-serif;
+  max-width: 2000px; 
+}
+
+.glimpse-of-rooms h2 {
+  font-size: 2.5em;
+  color: #000000;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.room-glimpse {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px; 
+  flex-wrap: wrap; 
+  transition: transform 0.3s ease; 
+}
+
+.room-glimpse:nth-child(even) {
+  flex-direction: row-reverse;
+}
 
 
 
+.room-photo {
+  flex: 1;
+  transition: transform 0.3s ease;
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 9px;
+  border-image-source: linear-gradient(45deg, #fcc6e1, #ffffff, #000000);
+  transition: border-image-source 0.5s ease;
+}
+
+.room-photo img {
+  width: 100%;
+  height: auto;
+
+}
+
+.room-details {
+  flex: 1;
+  padding: 30px;
+  margin: 10px;
+  background: #fff;
+  transition: transform 0.3s ease;
+}
+
+.room-glimpse:hover .room-photo {
+  transform: translateY(-10px);
+  animation: gradientHover 2s infinite alternate;
+}
+
+.room-glimpse:hover .room-details {
+  transform: translateY(-10px);
+}
+
+.room-details h3 {
+  color: #000000;
+  border-bottom: 3px solid #ff69b4;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.room-details ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.room-details ul li {
+  padding: 15px 0;
+  border-bottom: 1px solid #dddddd;
+  font-size: 1.2em;
+  font-weight: 400;
+  color: #000000;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.room-details ul li:last-child {
+  border-bottom: none;
+}
+
+.room-details ul li:hover {
+  background-color: #f9f9f9;
+  color: #333;
+}
+/* END OF ABOUT US */
 
 
 
-
-
-
-
-/*contact page*/
+/*CONTACT US*/
 .contact-container {
   height: 100vh; 
   width: 100%; 
@@ -323,10 +617,11 @@ section.active {
 .contact-form button:active {
   background-color: #b88f8f; 
 }
+/*END OF CONTACT US*/
 
 
 
-/* Book now */
+/* BOOK NOW */
 .home-image {
   width: 100vw; 
   height: 100vh; 
@@ -359,25 +654,25 @@ section.active {
 
 .search-form {
   position: absolute;
-  top: 50%; /* Adjusted vertical positioning */
+  top: 50%; 
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.95); /* Increased opacity for better visibility */
-  padding: 30px; /* Increased padding for better spacing */
-  border-radius: 20px; /* Rounded corners */
+  background: rgba(255, 255, 255, 0.95); 
+  padding: 30px; 
+  border-radius: 20px; 
   width: 90%;
   max-width: 800px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box-shadow for depth */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .search-form form {
   display: flex;
-  flex-wrap: wrap; /* Added flex-wrap for responsive layout */
+  flex-wrap: wrap; 
   justify-content: space-between;
 }
 
 .search-form .form-group {
-  flex: 1 0 45%; /* Two columns on larger screens */
+  flex: 1 0 45%; 
   margin: 0 10px;
 }
 
@@ -432,20 +727,21 @@ section.active {
 }
 
 .search-form .form-group {
-  margin-bottom: 10px; /* Existing margin for other elements */
+  margin-bottom: 10px; 
 }
 
-/* Increase the gap for kitchen and smoking checkboxes */
+
 .search-form .form-group.checkbox-group {
-  margin-bottom: 30px; /* Increased margin for checkboxes */
+  margin-bottom: 30px; 
 }
 
+/* END OF BOOK NOW*/
 
 
 
 
 
-/* Room Listing Styles */
+/* ROOM LISTING*/
 
 
 .room-listing {
@@ -470,8 +766,8 @@ section.active {
 
 .room-image-slider {
   position: relative;
-  width: 50%; /* Increased from 30% to 50% */
-  height: 300px; /* Increased from 200px to 300px */
+  width: 50%; 
+  height: 300px; 
   overflow: hidden;
   margin-right: 10px;
 }
@@ -616,6 +912,8 @@ button.next {
       width: 80%;
   }
 }
+
+/* END OF ROOM LISTING*/
 
 
 
