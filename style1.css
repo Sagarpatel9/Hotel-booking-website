@@ -9,79 +9,7 @@
   font-family:'Times New Roman', Times, serif;
 }
 
-/* BEGINING PAGE WITH VIDEO AND TITLE*/
-.background-video {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100vh;
-}
 
-.background-video video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
-
-
-.title {
-  font-size: 150px; 
-  font-family:'Alex Brush', cursive; 
-  color: whitesmoke;
-  text-shadow: 2px 2px 4px #000000;
-  font-weight: 100;
-
-  
-  
-}
-
-
-
-.subtitle {
-  font-size: 35px; 
-  font-family:'Alex Brush', cursive; 
- color: whitesmoke;
- text-shadow: 2px 2px 4px #000000;
- font-weight: 100;
- text-wrap:nowrap;
- 
-
-  
-}
-
-.title-container {
-  position: absolute;
-  top: 83%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-
-.title-container.scrolled {
-  top: 30px;
-  left: 10px;
-  transform: none;
-}
-
-.subtitle-container {
-  position: absolute;
-  top: 95%; 
-  left: 53%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.subtitle-container.scrolled {
-  top: 50px; 
-  left: 20px;
-  transform: none;
-}
-/* END OF BEGINING PAGE*/
 
 /* TOP NAVIGATION BAR*/
 
@@ -200,7 +128,7 @@ section.active {
   position: relative;
   text-align: center;
   padding: 50px 20px;
-  background: url('./image/pexels-mickhaupt-5140710.jpg') no-repeat center center;
+  background: url('./image/homepage.webp') no-repeat center center;
   background-size: cover;
   color: #ffffff;
   height: 100vh; 
@@ -918,7 +846,111 @@ button.next {
 
 
 
+/*RESERVATION FORM*/
+.booking-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f8f8; 
+}
 
+/* Styling for the form */
+.booking-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Styling for the form heading */
+.booking-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Styling for the form rows */
+.form-row {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row label {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+/* Styling for the input fields */
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="tel"],
+.form-row input[type="date"],
+.form-row input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.form-row input[type="text"]:focus,
+.form-row input[type="email"]:focus,
+.form-row input[type="tel"]:focus,
+.form-row input[type="date"]:focus,
+.form-row input[type="number"]:focus {
+  border-color: #e4cbcb;
+  outline: none;
+}
+
+/* Styling for the radio group */
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 5px;
+}
+
+.radio-group label {
+  margin-right: 10px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+/* Styling for the submit button */
+.reserve-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #e4cbcb;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.reserve-btn:hover {
+  background-color: #d4b0b0;
+}
+
+/* Styling for the image */
+.booking-form img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 20px;
+}
+
+/*END OF RESERVATION FORM*/
 
 
 

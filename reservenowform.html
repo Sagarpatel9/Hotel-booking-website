@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="style1.css">
+    <script src="project.js" defer></script> 
+    <title>Booking Form</title>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="logo">
+            <img src="./image/6475165.png" alt="Company Logo"> 
+            <div class="navtitle">Sakura</div>
+        </div>
+        <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About Us</a></li>
+            <li><a href="contact.html" class="nav-link">Contact Us</a></li>
+            <li><a href="reservation.html" class="nav-link">Reservation</a></li>
+            <li class="book-now"><a href="roomsearch.html" class="nav-link">BOOK NOW</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="booking-form-container">
+        <form class="booking-form" action="/submit" method="POST">
+            <img src="./image/reservationform.jpg" alt="Hotel Image">
+            <h1>Reserve Your Room</h1>
+            <div class="form-row">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="first_name" required>
+            </div>
+            <div class="form-row">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="last_name" required>
+            </div>
+            <div class="form-row">
+                <label for="address1">Address 1 *</label>
+                <input type="text" id="address1" name="address_1" required>
+            </div>
+            <div class="form-row">
+                <label for="address2">Address 2</label>
+                <input type="text" id="address2" name="address_2">
+            </div>
+            <div class="form-row">
+                <label for="city">City *</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-row">
+                <label for="state">State *</label>
+                <input type="text" id="state" name="state" required>
+            </div>
+            <div class="form-row">
+                <label for="zipCode">Zip Code *</label>
+                <input type="text" id="zipCode" name="zip_code" required>
+            </div>
+            <div class="form-row">
+                <label for="phone">Phone *</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-row">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-row">
+                <label for="checkInDate">Check-in Date *</label>
+                <input type="date" id="checkInDate" name="check_in_date" required>
+            </div>
+            <div class="form-row">
+                <label for="checkOutDate">Check-out Date *</label>
+                <input type="date" id="checkOutDate" name="check_out_date" required>
+            </div>
+            <div class="form-row">
+                <label>Room Preference *</label>
+                <div class="radio-group">
+                    <input type="radio" id="basic" name="room_preference" value="basic" required>
+                    <label for="basic">Basic</label>
+                    <input type="radio" id="business" name="room_preference" value="business" required>
+                    <label for="business">Business</label>
+                    <input type="radio" id="vip" name="room_preference" value="vip" required>
+                    <label for="vip">VIP</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <label>Capacity *</label>
+                <div class="radio-group">
+                    <input type="radio" id="oneBed" name="capacity" value="1" required>
+                    <label for="oneBed">1 Bed (1-2 Adults)</label>
+                    <input type="radio" id="twoBed" name="capacity" value="2" required>
+                    <label for="twoBed">2 Beds (1-4 Adults)</label>
+                </div>
+            </div>
+            <button type="submit" class="reserve-btn">Reserve Now</button>
+        </form>
+    </div>
+
+
+</body>
+
+</html>
