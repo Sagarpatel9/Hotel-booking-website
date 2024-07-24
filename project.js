@@ -164,32 +164,9 @@ function confirmBooking() {
     window.location.href = 'index.html';
 }
 
-function downloadConfirmation() {
-    // Ensure the popup is fully rendered
-    setTimeout(() => {
-        // Temporarily set the styles for PDF generation
-        const popupContent = document.getElementById('popup-content');
-        const originalStyles = popupContent.style.cssText;
-        popupContent.style.cssText += `
-            color: #000000 !important; 
-            background: #FFFFFF !important; 
-            font-weight: bold !important; 
-            text-shadow: none !important; 
-            filter: none !important;
-            opacity: 1 !important;
-        `;
-
-        html2canvas(popupContent).then(canvas => {
-            const imgData = canvas.toDataURL('image/png');
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF();
-            pdf.addImage(imgData, 'PNG', 10, 10, 180, 160); // Adjust dimensions to fit the content
-            pdf.save("confirmation.pdf");
-
-            // Revert styles back to original
-            popupContent.style.cssText = originalStyles;
-        }).catch(err => console.error('Error capturing the content:', err));
-    }, 1000); // Longer delay to ensure the popup is fully rendered
+function copyCodeClipboard() {
+    // Clipboard
+    navigator.clipboard.writeText("Some_Super_Secret_Code");
 }
 
 
