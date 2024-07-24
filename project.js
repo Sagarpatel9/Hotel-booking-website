@@ -166,6 +166,8 @@ function confirmBooking() {
 
 function copyCodeClipboard() {
     // Clipboard
+    const button = document.getElementById("copy_to_clipboard_button");
+    button.innerText = "Coppied To Clipboard"
     navigator.clipboard.writeText("Some_Super_Secret_Code");
 }
 
