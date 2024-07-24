@@ -141,6 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Store the booking ID in session storage to detect form resubmission
         sessionStorage.setItem('bookingId', bookingId);
 
+        copyCodeClipboard(bookingId);
+
         // Log the popup content for debugging
         console.log(document.getElementById('popup-content').innerHTML);
     });
@@ -164,11 +166,11 @@ function confirmBooking() {
     window.location.href = 'index.html';
 }
 
-function copyCodeClipboard() {
+function copyCodeClipboard(booking_id) {
     // Clipboard
     const button = document.getElementById("copy_to_clipboard_button");
     button.innerText = "Coppied To Clipboard"
-    navigator.clipboard.writeText("Some_Super_Secret_Code");
+    navigator.clipboard.writeText(booking_id);
 }
 
 
