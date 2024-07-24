@@ -115,4 +115,105 @@ function toggleDropdown(button) {
 
 
 
+//pop-up message that show user and their booking id after reserve now 
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('.booking-form');
+    
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+
+        // Generate a random booking ID (for reference and display purposes)
+        const bookingId = 'BKG' + Math.floor(Math.random() * 1000000);
+        
+        // Set the thank you message
+        document.getElementById('thank-you-message').innerHTML = `
+            Thank you, ${firstName} ${lastName}!<br>
+            Your Booking ID is ${bookingId}.<br>
+            Your booking has been received.
+        `;
+
+        // Show the popup message
+        document.getElementById('popup-message').style.display = 'block';
+
+        // Store the booking ID in session storage to detect form resubmission
+        sessionStorage.setItem('bookingId', bookingId);
+
+        // Log the popup content for debugging
+        console.log(document.getElementById('popup-content').innerHTML);
+    });
+
+    // Prevent form resubmission by checking session storage
+    if (sessionStorage.getItem('bookingId')) {
+        window.location.href = 'index.html';
+    }
+});
+
+function closePopup() {
+    document.getElementById('popup-message').style.display = 'none';
+    // Redirect to the home page after closing the popup
+    window.location.href = 'index.html';
+}
+
+function confirmBooking() {
+    // Hide the popup message
+    document.getElementById('popup-message').style.display = 'none';
+    // Redirect to the home page after closing the popup
+    window.location.href = 'index.html';
+}
+
+function downloadConfirmation() {
+    // Ensure the popup is fully rendered
+    setTimeout(() => {
+        // Temporarily set the styles for PDF generation
+        const popupContent = document.getElementById('popup-content');
+        const originalStyles = popupContent.style.cssText;
+        popupContent.style.cssText += `
+            color: #000000 !important; 
+            background: #FFFFFF !important; 
+            font-weight: bold !important; 
+            text-shadow: none !important; 
+            filter: none !important;
+            opacity: 1 !important;
+        `;
+
+        html2canvas(popupContent).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            pdf.addImage(imgData, 'PNG', 10, 10, 180, 160); // Adjust dimensions to fit the content
+            pdf.save("confirmation.pdf");
+
+            // Revert styles back to original
+            popupContent.style.cssText = originalStyles;
+        }).catch(err => console.error('Error capturing the content:', err));
+    }, 1000); // Longer delay to ensure the popup is fully rendered
+}
+
+
+/*reservation top nav tab*/
+
+document.getElementById('reservationForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    // Implement view reservation logic here
+    alert('View Reservation clicked');
+});
+
+document.getElementById('cancelReservationBtn').addEventListener('click', function() {
+    // Implement cancel reservation logic here
+    alert('Cancel Reservation clicked');
+});
+
+
+
+
+
+
+
+
+
+
+
 

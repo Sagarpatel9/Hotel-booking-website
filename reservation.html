@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="style1.css">
-    <script src="project.js" defer></script> 
+    <script src="project.js" defer></script>
+    <title>Reservation</title> 
 </head>
 <body>
     <nav class="top-nav">
@@ -18,6 +19,24 @@
             <li class="book-now"><a href="roomsearch.html" class="nav-link">BOOK NOW</a></li>
         </ul>
     </nav>
+
+    <section class="reservation-section">
+        <h1>Check Your Reservation</h1>
+        <form id="reservationForm">
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="bookingId">Booking ID:</label>
+                <input type="text" id="bookingId" name="bookingId" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" id="viewReservationBtn">View Reservation</button>
+                <button type="button" id="cancelReservationBtn">Cancel Reservation</button>
+            </div>
+        </form>
+    </section>
 
 
 </body>
