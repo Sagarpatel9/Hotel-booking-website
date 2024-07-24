@@ -168,8 +168,6 @@ function confirmBooking() {
 
 function copyCodeClipboard(booking_id) {
     // Clipboard
-    const button = document.getElementById("copy_to_clipboard_button");
-    button.innerText = "Coppied To Clipboard"
     navigator.clipboard.writeText(booking_id);
 }
 
