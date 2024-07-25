@@ -549,38 +549,99 @@ section.active {
 
 
 
+
+
+
 /*RESERVATION TAB IN TOP NAV */
 .reservation-section {
-  display: block;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px); /* Adjusted for the height of the navigation bar */
+  background: #ffffff;
 }
+
+.card {
+  background: #fff;
+  border: 2px solid #e4cbcb; /* Added pink border */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h1 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #e4cbcb;
+  padding-bottom: 10px;
+}
+
 .form-group {
   margin-bottom: 15px;
 }
+
 .form-group label {
   display: block;
   margin-bottom: 5px;
-}
-.form-group input {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-}
-.form-actions {
-  display: flex;
-  gap: 10px;
-}
-.form-actions button {
-  padding: 10px 20px;
-  background-color: #e4cbcb;
-  border: none;
-  cursor: pointer;
-}
-.form-actions button:hover {
-  background-color: #d1b1b1;
+  color: #333;
+  font-weight: bold;
 }
 
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #e4cbcb;
+  box-shadow: 0 0 5px rgba(228, 203, 203, 0.5);
+}
+
+.form-actions {
+  margin-top: 20px;
+}
+
+.form-actions button {
+  background-color: #e4cbcb;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.form-actions button:hover {
+  background-color: #d1b0b0;
+  transform: scale(1.05);
+}
+
+.form-actions button:active {
+  background-color: #b89797;
+  transform: scale(0.95);
+}
+
+
 /*END OF RESERVATION TAB IN TOP NAV*/
+
+
+
+
 
 
 /* BOOK NOW */
