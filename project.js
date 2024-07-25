@@ -50,9 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.dropdown-button').forEach(button => {
         button.addEventListener('click', function() {
             const dropdownContent = this.nextElementSibling;
-            const isVisible = dropdownContent.style.display === 'block';
-            dropdownContent.style.display = isVisible ? 'none' : 'block';
-            this.innerHTML = isVisible ? 'Amenities and Details &#9660;' : 'Amenities and Details &#9650;';
+            const isVisible = dropdownContent && dropdownContent.style.display === 'block';
+            if (dropdownContent) {
+                dropdownContent.style.display = isVisible ? 'none' : 'block';
+                this.innerHTML = isVisible ? 'Amenities and Details &#9660;' : 'Amenities and Details &#9650;';
+            }
         });
     });
 
@@ -67,6 +69,29 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     initializeSliders();
+
+    // Slideshow for main page
+    let slideIndex = 0;
+    function showMainSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        if (slides.length === 0 || dots.length === 0) {
+            return; // Exit if there are no slides or dots
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+        setTimeout(showMainSlides, 2000); // Change image every 2 seconds
+    }
+    showMainSlides();
 
     // Reservation form submission and popup message (Reservation Page)
     const reservationForm = document.getElementById('reservation-form');
@@ -138,9 +163,11 @@ function moveSlide(n, sliderId) {
 // Function to toggle dropdown content
 function toggleDropdown(button) {
     const dropdownContent = button.nextElementSibling;
-    const isVisible = dropdownContent.style.display === 'block';
-    dropdownContent.style.display = isVisible ? 'none' : 'block';
-    button.innerHTML = isVisible ? 'Amenities and Details &#9660;' : 'Amenities and Details &#9650;';
+    const isVisible = dropdownContent && dropdownContent.style.display === 'block';
+    if (dropdownContent) {
+        dropdownContent.style.display = isVisible ? 'none' : 'block';
+        button.innerHTML = isVisible ? 'Amenities and Details &#9660;' : 'Amenities and Details &#9650;';
+    }
 }
 
 // Function to close the popup message
@@ -159,4 +186,3 @@ function confirmBooking() {
 function copyCodeClipboard(booking_id) {
     navigator.clipboard.writeText(booking_id);
 }
-
