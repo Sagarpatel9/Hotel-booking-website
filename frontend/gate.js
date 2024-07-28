@@ -126,10 +126,11 @@ export const API = {
 			capacity = undefined,
 			price = undefined,
 			smoking = undefined,
-			kitchen = undefined
+			kitchen = undefined,
+			number = undefined
 		}
 	) {
-		let ret = await request("POST", "/admin/room", {room:{tier, capacity, price, smoking, kitchen}, login:{password}})
+		let ret = await request("POST", "/admin/room", {room:{tier, capacity, price, smoking, kitchen, number}, login:{password}})
 		
 		await this.reactive_callback(ret);
 		
@@ -142,10 +143,11 @@ export const API = {
 			capacity = undefined,
 			smoking = undefined,
 			kitchen = undefined,
-			price = undefined
+			price = undefined,
+			number = undefined
 		}
 	) {
-		let ret = await request("POST", "/room/search", {id, tier, capacity, price, smoking, kitchen})
+		let ret = await request("POST", "/room/search", {id, tier, capacity, price, smoking, kitchen, number})
 		
 		await this.reactive_callback(ret);
 		

@@ -17,6 +17,7 @@ class RoomModel(BaseModel):
     smoking: Optional[int] = None
     kitchen: Optional[int] = None
     price: Optional[float] = None
+    number: Optional[PositiveInt] = None
 
 class Booking(BaseModel):
     id: Optional[int] = None

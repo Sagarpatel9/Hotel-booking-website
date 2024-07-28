@@ -98,17 +98,17 @@ class DataBase:
         return rooms
 
     def create_room(self, tier:Literal['basic'] | Literal['buciness'] | Literal['vip'], capacity:Literal[1] | Literal[2],
-        smoking: bool, kitchen: bool, price: float):
-        for arg in [tier, capacity, smoking, kitchen, price]:
+        smoking: bool, kitchen: bool, price: float, number:int):
+        for arg in [tier, capacity, smoking, kitchen, price, number]:
             if arg == None:
                 raise RuntimeError("Missing Arguments")
         
         cursor = self.conn.cursor()
 
         cursor.execute("""
-        INSERT INTO Room (tier, capacity, smoking, kitchen, price)
-        VALUES (?, ?, ?, ?, ?);
-        """, (tier, capacity, smoking, kitchen, price))
+        INSERT INTO Room (tier, capacity, smoking, kitchen, price, number)
+        VALUES (?, ?, ?, ?, ?, ?);
+        """, (tier, capacity, smoking, kitchen, price, number))
         
         self.conn.commit()
 
@@ -279,7 +279,8 @@ class DataBase:
             capacity INTEGER NOT NULL CHECK(capacity IN (1, 2)),
             smoking INTEGER NOT NULL,
             kitchen INTEGER NOT NULL,
-            price REAL NOT NULL
+            price REAL NOT NULL,
+            number INTEGER NOT NULL UNIQUE
         );
 
         CREATE TABLE IF NOT EXISTS Booking (

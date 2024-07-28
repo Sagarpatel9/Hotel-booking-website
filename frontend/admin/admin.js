@@ -23,6 +23,7 @@ async function refresh() {
         <th>Beds</th>
         <th>Smoking</th>
         <th>Kitchen</th>
+        <th>Number</th>
         <th>X</th>
     </tr>
     `
@@ -36,6 +37,7 @@ async function refresh() {
         <th>${room.capacity}</th>
         <th><input name="smoking" type="checkbox" ${room.smoking == 1 ? "checked" : ""} disabled></th>
         <th><input name="kitchen" type="checkbox" ${room.kitchen == 1 ? "checked" : ""} disabled></th>
+        <th>${room.number}</th>
         `;
         let delcol = document.createElement('th')
         let button = document.createElement('button');
@@ -118,6 +120,7 @@ CREATE_ROOM_FORM.addEventListener("submit", async (event) => {
         price: data.get("price"),
         smoking: data.get("smoking") == "on" ? 1 : 0,
         kitchen: data.get("kitchen") == "on" ? 1 : 0,
+        number: Number(data.get("number"))
     })
     await refresh();
 })

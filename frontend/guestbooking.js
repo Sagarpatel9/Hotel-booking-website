@@ -14,7 +14,7 @@ window.onload = async ()  => {
         INFO.innerHTML = `
         <div>
             <div>
-                <h2>Room With ${room.capacity} Bed (${room.tier} tier)</h2>
+                <h2>Room #${room.number} With ${room.capacity} Bed (${room.tier} tier)</h2>
                 <h1>$${room.price}</h1>
                 <h3>Booked by ${booking.f_name} ${booking.l_name}</h3>
                 <h4>From ${booking.check_in} to ${booking.check_out}</h4>

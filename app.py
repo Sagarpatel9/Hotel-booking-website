@@ -41,6 +41,8 @@ async def search(room: Optional[RoomModel] = Body(None)):
 
     if room.id is not None:
         search["id"] = ('=', room.id)
+    if room.id is not None:
+        search["number"] = ('=', room.number)
     if room.tier is not None:
         search["tier"] = ('=', room.tier.value)
     if room.capacity is not None:
@@ -82,7 +84,7 @@ def hash_str(inp:str):
 async def create_room(login: AdminLogin, room: RoomModel):
     if validate_admin_login(login):
         try:
-            DB.create_room(room.tier.value, room.capacity, room.smoking, room.kitchen, room.price)
+            DB.create_room(room.tier.value, room.capacity, room.smoking, room.kitchen, room.price, room.number)
         except RuntimeError as e:
             return {"success": False, "msg": str(e)}
         except Exception as e:
