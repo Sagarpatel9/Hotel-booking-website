@@ -159,6 +159,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
+
+
+
+// Function to toggle dropdown content
+function toggleDropdown(button) {
+    const dropdownContent = button.nextElementSibling;
+    const isVisible = dropdownContent && dropdownContent.style.display === 'block';
+    if (dropdownContent) {
+        dropdownContent.style.display = isVisible ? 'none' : 'block';
+        button.innerHTML = isVisible ? 'Amenities and Details &#9660;' : 'Amenities and Details &#9650;';
+    }
+}
+
 // Function to show slides
 function showSlides(sliderId) {
     const slides = document.querySelectorAll(`#${sliderId} .slide`);
@@ -176,19 +190,8 @@ function showSlides(sliderId) {
 function moveSlide(n, sliderId) {
     slideIndexes[sliderId] += n;
     showSlides(sliderId);
+    console.log("moveslide");
 }
-
-// Function to toggle dropdown content
-function toggleDropdown(button) {
-    const dropdownContent = button.nextElementSibling;
-    const isVisible = dropdownContent && dropdownContent.style.display === 'block';
-    if (dropdownContent) {
-        dropdownContent.style.display = isVisible ? 'none' : 'block';
-        button.innerHTML = isVisible ? 'Amenities and Details &#9660;' : 'Amenities and Details &#9650;';
-    }
-}
-
-
 
 // Function to confirm the booking
 function confirmBooking() {

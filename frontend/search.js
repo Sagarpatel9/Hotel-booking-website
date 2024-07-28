@@ -1,14 +1,11 @@
 import {API} from './gate.js'
 const SEARCH_RESULTS = document.getElementById("search-results")
+
+
+
 window.addEventListener("load", async () => {
-    /*
-    ?tier=basic
-    &capacity=1
-    &check_in=2024-07-16
-    &check_out=2024-07-31
-    &smoking=on
-    &kitchen=on
-    */
+    
+    
     const urlParams = new URLSearchParams(window.location.search);
     let response = await API.room_get({
         tier: urlParams.get("tier"),
@@ -22,13 +19,13 @@ window.addEventListener("load", async () => {
                 SEARCH_RESULTS.innerHTML += `
                 <div class="room-listing">
         <div class="room">
-            <div class="room-image-slider" id="slider1">
+            <div class="room-image-slider" id="slider${room["id"]}">
                 <div class="slider">
                     <div class="slide"><img src="${["./image/basic_single_bed/1_king_bed.webp", "./image/basic_double_bed/double_bed_basic.webp"][Number(room["capacity"])-1]}" alt="Room Image 2"></div>
                     <div class="slide"><img src="${["./image/basic_single_bed/restroom_1_king_bed.webp", "./image/basic_double_bed/basic_double_bed_restroom.webp"][Number(room["capacity"])-1]}" alt="Room Image 3"></div>
                 </div>
-                <button class="prev" onclick="moveSlide(-1, 'slider1')">&#10094;</button>
-                <button class="next" onclick="moveSlide(1, 'slider1')">&#10095;</button>
+                <button class="prev" onclick="moveSlide(-1, 'slider${room["id"]}')">&#10094;</button>
+                <button class="next" onclick="moveSlide(1, 'slider${room["id"]}')">&#10095;</button>
                 <span class="tier-label">Basic</span>
             </div>
             <div class="room-details">
@@ -59,13 +56,13 @@ window.addEventListener("load", async () => {
                 SEARCH_RESULTS.innerHTML += `
 <div class="room-listing">
         <div class="room">
-            <div class="room-image-slider" id="slider3">
+            <div class="room-image-slider" id="slider${room["id"]}">
                 <div class="slider">
                     <div class="slide"><img src="${["./image/bussiness_single_bed/single_bed.webp", "./image/bussiness_double_bed/bussiness_double_bed.webp"][Number(room["capacity"])-1]}" alt="Room Image 2"></div>
                     <div class="slide"><img src="${["./image/bussiness_single_bed/restroom_bussiness.webp", "./image/bussiness_double_bed/bussiness_double_bed_restroom.webp"][Number(room["capacity"])-1]}" alt="Room Image 3"></div>
                 </div>
-                <button class="prev" onclick="moveSlide(-1, 'slider3')">&#10094;</button>
-                <button class="next" onclick="moveSlide(1, 'slider3')">&#10095;</button>
+                <button class="prev" onclick="moveSlide(-1, 'slider${room["id"]}')">&#10094;</button>
+                <button class="next" onclick="moveSlide(1, 'slider${room["id"]}')">&#10095;</button>
                 <span class="tier-label">Business</span>
             </div>
             <div class="room-details">
@@ -98,13 +95,13 @@ window.addEventListener("load", async () => {
                 SEARCH_RESULTS.innerHTML += `
             <div class="room-listing">
         <div class="room">
-            <div class="room-image-slider" id="slider5">
+            <div class="room-image-slider" id="slider${room["id"]}">
                 <div class="slider">
                     <div class="slide"><img src="${["./image/vip_single_bed/vip_single_bed.webp", "./image/vip_double_bed/vipdouble_bed.webp"][Number(room["capacity"])-1]}" alt="Room Image 2"></div>
                     <div class="slide"><img src="${["./image/vip_single_bed/vip_restroom.webp", "./image/vip_double_bed/vip_double bed_restroom.webp"][Number(room["capacity"])-1]}" alt="Room Image 3"></div>
                 </div>
-                <button class="prev" onclick="moveSlide(-1, 'slider5')">&#10094;</button>
-                <button class="next" onclick="moveSlide(1, 'slider5')">&#10095;</button>
+                <button class="prev" onclick="moveSlide(-1, 'slider${room["id"]}')">&#10094;</button>
+                <button class="next" onclick="moveSlide(1, 'slider${room["id"]}')">&#10095;</button>
                 <span class="tier-label">VIP</span>
             </div>
             <div class="room-details">
