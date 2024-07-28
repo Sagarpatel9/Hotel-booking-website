@@ -152,7 +152,7 @@ export const API = {
 		return ret;
 	},
 	async room_delete(password, id) {
-		let ret = await request("POST", "/room/search", {room:{id}, login:{password}})
+		let ret = await request("DELETE", "/admin/room", {room:{id}, login:{password}})
 		
 		await this.reactive_callback(ret);
 		

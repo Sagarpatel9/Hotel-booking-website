@@ -11,7 +11,7 @@ BOOKING_FORM.addEventListener("submit", async (e) => {
     const data = new FormData(e.target);
 
     const urlParams = new URLSearchParams(window.location.search);
-    let randkey = Math.random()
+    let randkey = Math.random();
     let response = await API.booking_create({
         f_name: data.get("f_name"),
         l_name: data.get("l_name"),

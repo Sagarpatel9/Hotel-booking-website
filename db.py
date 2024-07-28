@@ -154,6 +154,14 @@ class DataBase:
         cursor.close()
 
     def get_booking(self, where:dict[str, tuple[Literal["=", "<", ">", ">=", "<="], str|int]]):
+        rem_list = []
+        for k, (s, v) in where.items():
+            if v is None:
+                rem_list.append(k)
+
+        for rem in rem_list:
+            del where[rem]
+        
         cursor = self.conn.cursor()
         
         items = ()

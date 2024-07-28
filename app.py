@@ -127,8 +127,8 @@ async def get_booking(login: AdminLogin, booking: Booking):
                 'city':('=',booking.city), 'state':('=',booking.state), 'zip_code':('=',booking.zip_code), 'phone':('=',booking.phone), 'email':('=',booking.email),
                 'check_in':('=',booking.check_in), 'check_out':('=',booking.check_out),
                 'checkin_key':('=',booking.checkin_key), 'room_id':('=',booking.room_id)})
-        except:
-            return {"success": False, "msg": "Failed to get booking."}
+        except Exception as e:
+            return {"success": False, "msg": str(e)}
     else:
         return {"success": False, "msg": "Invalid auth."}
     
