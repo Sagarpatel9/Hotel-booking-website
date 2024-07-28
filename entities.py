@@ -14,6 +14,9 @@ class RoomModel(BaseModel):
     id: Optional[int] = None
     tier: Optional[RoomTier] = None
     capacity: Optional[Literal[1, 2]] = None
+    smoking: Optional[int] = None
+    kitchen: Optional[int] = None
+    price: Optional[float] = None
 
 class Booking(BaseModel):
     id: Optional[int] = None
@@ -28,7 +31,5 @@ class Booking(BaseModel):
     email: Optional[str] = None
     check_in: Optional[str] = None
     check_out: Optional[str] = None
-    tier: Optional[RoomTier] = None
-    capacity: Optional[Literal[1, 2]] = None
     checkin_key: Optional[str] = None
     room_id: Optional[int] = None

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room Search</title>
     <link rel="stylesheet" type="text/css" href="/style1.css">
-    <script src="project.js" defer></script>
+    <script src="project.js" type="module" defer></script>
 </head>
 <body>
     <nav class="top-nav">
@@ -28,10 +28,10 @@
             <img src="./image/pexels-ryutaro-5220061.jpg" alt="Home Image">
             <h2 class="slogan">Your Adventure Starts Here</h2>
           <div class="search-form">
-            <form>
+            <form action="/roomlisting.html" method="GET">
                 <div class="form-group">
                     <label for="search-tier">Tier:</label>
-                    <select name="Tier" id="search-tier">
+                    <select name="tier" id="search-tier">
                         <option value="" selected disabled>Tier</option>
                         <option value="basic">Basic</option>
                         <option value="business">Business</option>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label for="search-capacity">Capacity:</label>
-                    <select name="Capacity" id="search-capacity">
+                    <select name="capacity" id="search-capacity">
                         <option value="" selected disabled>select bed</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -48,14 +48,15 @@
                 </div>
                 <div class="form-group">
                     <label for="check-in">Check-In Date:</label>
-                    <input type="date" id="check-in" name="check-in" required>
+                    <input type="date" id="check-in" name="check_in" required>
                 </div>
                 <div class="form-group">
                     <label for="check-out">Check-Out Date:</label>
-                    <input type="date" id="check-out" name="check-out" required>
+                    <input type="date" id="check-out" name="check_out" required>
                 </div>
                 <div class="form-group">
-                    <label><input type="checkbox" id="search-smoking" name="smoking"/> Smoking</label>
+                    <label><input type="checkbox" id="search_smoking" name="smoking"/> Smoking</label>
+                    <label><input type="checkbox" id="search_smoking" name="kitchen"/> Kitchen</label>
                 </div>
                 <div class="form-group">
                     <button type="submit">Search</button>

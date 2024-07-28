@@ -1,4 +1,56 @@
+import {API} from './gate.js'
+
 let slideIndexes = {};
+const BOOKING_FORM = document.getElementById("booking-form")
+const BOOKING_ERR = document.getElementById("err-msg")
+
+// WILLIAM
+if (BOOKING_FORM !== null)
+BOOKING_FORM.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+
+    const urlParams = new URLSearchParams(window.location.search);
+    let randkey = Math.random()
+    let response = await API.booking_create({
+        f_name: data.get("f_name"),
+        l_name: data.get("l_name"),
+        address_1: data.get("address_1"), 
+        address_2: data.get("address_2"), 
+        city: data.get("city"), 
+        state: data.get("state"), 
+        zip_code: data.get("zip_code"), 
+        phone: data.get("phone"), 
+        email: data.get("email"), 
+        check_in: urlParams.get("check_in"), 
+        check_out: urlParams.get("check_out"), 
+        checkin_key: `${urlParams.get("room_id")}-${randkey}`,
+        room_id: Number(urlParams.get("room_id"))
+    });
+
+    if (response["success"])
+        display_popup(`${urlParams.get("room_id")}-${randkey}`)
+    else {
+        console.log(response)
+        BOOKING_ERR.innerText = response["msg"];
+    }
+})
+
+function display_popup(key) {
+    document.getElementById("popup-message").style.display = "block";
+    navigator.clipboard.writeText(key)
+}
+
+// Function to close the popup message
+function closePopup() {
+    document.getElementById('popup-message').style.display = 'none';
+    window.location.href = 'index.html';
+}
+
+document.getElementById("close-x")?.addEventListener("click", closePopup)
+document.getElementById("ok-button")?.addEventListener("click", closePopup)
+
+// SAGAR
 
 document.addEventListener('DOMContentLoaded', function () {
     // Top Navigation and Active Link
@@ -34,17 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     setActiveLink();
-
-    // Contact Us Form Submission
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            alert('Thank you, ' + name + '! Your form has been submitted.');
-            this.reset();
-        });
-    }
 
     // Room Listing Dropdown Content
     document.querySelectorAll('.dropdown-button').forEach(button => {
@@ -99,45 +140,22 @@ document.addEventListener('DOMContentLoaded', function () {
         reservationForm.addEventListener('submit', function(event) {
             event.preventDefault();
 
-            const lastName = document.getElementById('last-name').value;
-            const bookingId = document.getElementById('booking-id').value;
-
-            // Store last name and booking ID in session storage
-            sessionStorage.setItem('lastName', lastName);
-            sessionStorage.setItem('bookingId', bookingId);
+            sessionStorage.setItem("first_name", document.getElementById('first-name').value);
+            sessionStorage.setItem("booking_id", document.getElementById('booking-id').value);
 
             // Redirect to manage-reservation.html with query parameters
-            window.location.href = `manage-reservation.html?lastName=${encodeURIComponent(lastName)}&bookingId=${encodeURIComponent(bookingId)}`;
+            window.location.href = `manage-reservation.html`;
         });
     }
 
     // Reservation management buttons (Manage Reservation Page)
-    const viewReservationBtn = document.getElementById('view-reservation-btn');
     const cancelReservationBtn = document.getElementById('cancel-reservation-btn');
 
-    if (viewReservationBtn) {
-        viewReservationBtn.addEventListener('click', function() {
-            const lastName = sessionStorage.getItem('lastName');
-            const bookingId = sessionStorage.getItem('bookingId');
-            alert(`Viewing reservation for ${lastName} with Booking ID: ${bookingId}`);
-        });
-    }
-
     if (cancelReservationBtn) {
-        cancelReservationBtn.addEventListener('click', function() {
-            const lastName = sessionStorage.getItem('lastName');
-            const bookingId = sessionStorage.getItem('bookingId');
-            alert(`Cancelling reservation for ${lastName} with Booking ID: ${bookingId}`);
+        cancelReservationBtn.addEventListener('click', async () => {
+            await API.user_booking_delete(sessionStorage.getItem("first_name"), sessionStorage.getItem("booking_id"));
+            window.location.href = `index.html`;
         });
-    }
-
-    // Save last name and booking ID in session storage when the user accesses this page
-    const urlParams = new URLSearchParams(window.location.search);
-    const lastName = urlParams.get('lastName');
-    const bookingId = urlParams.get('bookingId');
-    if (lastName && bookingId) {
-        sessionStorage.setItem('lastName', lastName);
-        sessionStorage.setItem('bookingId', bookingId);
     }
 });
 
@@ -170,11 +188,7 @@ function toggleDropdown(button) {
     }
 }
 
-// Function to close the popup message
-function closePopup() {
-    document.getElementById('popup-message').style.display = 'none';
-    window.location.href = 'index.html';
-}
+
 
 // Function to confirm the booking
 function confirmBooking() {
@@ -186,3 +200,4 @@ function confirmBooking() {
 function copyCodeClipboard(booking_id) {
     navigator.clipboard.writeText(booking_id);
 }
+

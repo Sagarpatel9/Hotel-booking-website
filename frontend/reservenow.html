@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/style1.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="project.js" defer></script>
+    <script src="project.js" type="module" defer></script>
     <title>Booking Form</title>
 </head>
 <body>
@@ -23,16 +24,16 @@
     </nav>
 
     <div class="booking-form-container">
-        <form class="booking-form" action="/submit" method="POST">
+        <form class="booking-form" id="booking-form">
             <img src="./image/reservationform.jpg" alt="Hotel Image">
             <h1>Reserve Your Room</h1>
             <div class="form-row">
                 <label for="firstName">First Name *</label>
-                <input type="text" id="firstName" name="first_name" required>
+                <input type="text" id="firstName" name="f_name" required>
             </div>
             <div class="form-row">
                 <label for="lastName">Last Name *</label>
-                <input type="text" id="lastName" name="last_name" required>
+                <input type="text" id="lastName" name="l_name" required>
             </div>
             <div class="form-row">
                 <label for="address1">Address 1 *</label>
@@ -62,45 +63,17 @@
                 <label for="email">Email Address *</label>
                 <input type="email" id="email" name="email" required>
             </div>
-            <div class="form-row">
-                <label for="checkInDate">Check-in Date *</label>
-                <input type="date" id="checkInDate" name="check_in_date" required>
-            </div>
-            <div class="form-row">
-                <label for="checkOutDate">Check-out Date *</label>
-                <input type="date" id="checkOutDate" name="check_out_date" required>
-            </div>
-            <div class="form-row">
-                <label>Room Preference *</label>
-                <div class="radio-group">
-                    <input type="radio" id="basic" name="room_preference" value="basic" required>
-                    <label for="basic">Basic</label>
-                    <input type="radio" id="business" name="room_preference" value="business" required>
-                    <label for="business">Business</label>
-                    <input type="radio" id="vip" name="room_preference" value="vip" required>
-                    <label for="vip">VIP</label>
-                </div>
-            </div>
-            <div class="form-row">
-                <label>Capacity *</label>
-                <div class="radio-group">
-                    <input type="radio" id="oneBed" name="capacity" value="1" required>
-                    <label for="oneBed">1 Bed (1-2 Adults)</label>
-                    <input type="radio" id="twoBed" name="capacity" value="2" required>
-                    <label for="twoBed">2 Beds (1-4 Adults)</label>
-                </div>
-            </div>
             <button type="submit" class="reserve-btn">Reserve Now</button>
+            <div id="err-msg"></div>
         </form>
     </div>
 
     <div id="popup-message" class="popup-message">
         <div class="popup-content" id="popup-content">
-            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <span class="close-btn" id="close-x">&times;</span>
             <p id="thank-you-message"></p>
             <p>Your Reservation had been created and your Booking ID has been copied to your clipboard, please store it to safe place.</p>
-            <button onclick="confirmBooking()">OK</button>
-            <button onclick="closePopup()">Close</button>
+            <button id="ok-button">OK</button>
         </div>
     </div>
 

@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/style1.css">
     <title>Contact Us</title>
-    <script src="project.js" defer></script> 
+    <script src="project.js" type="module" defer></script> 
 </head>
 
 <body>
@@ -38,12 +38,9 @@
     
         <div class="contact-form">
             <h1>Contact Us</h1>
-            <form id="contactForm" action="submit_form.php" method="post">
-                <label for="name">Name:</label>
+            <form id="contactForm" action="mailto:info@sakurahotel.com" method="post" enctype="text/plain">
+                <label for="name">Subject:</label>
                 <input type="text" id="name" name="name" required>
-    
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
     
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" rows="4" required></textarea>

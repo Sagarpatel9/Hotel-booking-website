@@ -19,15 +19,15 @@ class DataBase:
 
         for key, value in updates.items():
             items += (value,)
-            set_query += "{} = ?, ".format(key)
+            set_query += "{} = ? AND ".format(key)
 
-        set_query = set_query.removesuffix(", ")
+        set_query = set_query.removesuffix(" AND ")
 
         where_query = ""
         for key, (sign, value) in where.items():
-            where_query += "{} {} ?, ".format(key, sign)
+            where_query += "{} {} ? AND ".format(key, sign)
             items += (value,)
-        where_query = where_query.removesuffix(", ")
+        where_query = where_query.removesuffix(" AND ")
 
         cursor.execute(f"""
         UPDATE Room
@@ -46,9 +46,9 @@ class DataBase:
 
         where_query = ""
         for key, (sign, value) in where.items():
-            where_query += "{} {} ?, ".format(key, sign)
+            where_query += "{} {} ? AND ".format(key, sign)
             items += (value,)
-        where_query = where_query.removesuffix(", ")
+        where_query = where_query.removesuffix(" AND ")
 
         cursor.execute(f"""
         DELETE FROM Room
@@ -65,15 +65,15 @@ class DataBase:
         items = ()
         rooms = []
 
+
         if where is not None and len(where) > 0:
 
             where_query = ""
             for key, (sign, value) in where.items():
                 if value is not None:
-                    where_query += "{} {} ?, ".format(key, sign)
+                    where_query += "{} {} ? AND ".format(key, sign)
                     items += (value,)
-            where_query = where_query.removesuffix(", ")
-
+            where_query = where_query.removesuffix(" AND ")
             cursor.execute(f"""
             SELECT * FROM Room
             WHERE {where_query};
@@ -97,34 +97,57 @@ class DataBase:
 
         return rooms
 
-    def create_room(self, tier:Literal['basic'] | Literal['buciness'] | Literal['vip'], capacity:Literal[1] | Literal[2]):
-        for arg in [tier, capacity]:
+    def create_room(self, tier:Literal['basic'] | Literal['buciness'] | Literal['vip'], capacity:Literal[1] | Literal[2],
+        smoking: bool, kitchen: bool, price: float):
+        for arg in [tier, capacity, smoking, kitchen, price]:
             if arg == None:
                 raise RuntimeError("Missing Arguments")
         
         cursor = self.conn.cursor()
 
         cursor.execute("""
-        INSERT INTO Room (tier, capacity)
-        VALUES (?, ?);
-        """, (tier, capacity))
+        INSERT INTO Room (tier, capacity, smoking, kitchen, price)
+        VALUES (?, ?, ?, ?, ?);
+        """, (tier, capacity, smoking, kitchen, price))
         
         self.conn.commit()
 
         cursor.close()
 
     def create_booking(self, f_name:str, l_name:str, address_1:str, address_2:str, city:str, state:str, zip_code:str, phone:str, email:str, check_in:str, check_out:str, 
-                    tier:Literal['basic', 'buciness', 'vip'], capacity:Literal[1] | Literal[2], checkin_key:str, room_id:int):
-        for arg in [f_name, l_name, address_1, address_2, city, state, zip_code, phone, email, check_in, check_out, tier, capacity, checkin_key, room_id]:
-            if arg == None:
-                raise RuntimeError("Missing Arguments")
+                    checkin_key:str, room_id:int = -1):
+        for arg in [f_name, l_name, address_1, address_2, city, state, zip_code, phone, email, check_in, check_out, checkin_key, room_id]:
+            if arg is None:
+                raise RuntimeError("Missing required booking info.")
+        
+        
         
         cursor = self.conn.cursor()
+        
+        if room_id == -1:
+            cursor.execute(f"""
+            SELECT r.id
+            FROM Room AS r
+            LEFT JOIN Booking AS b ON r.id = b.room_id
+            WHERE b.room_id IS NULL;
+            """)
+            room_id = cursor.fetchone()["id"]
+            
+            self.conn.commit()
+
+        cursor.close()
+
+        if self.check_date_overlap(check_in, check_out, room_id):
+            raise RuntimeError("Your check-in and check-out times for the requested room overlap with another guest's check-in and check-out times for that room.")
+
+
+        cursor = self.conn.cursor()
+        
 
         cursor.execute(f"""
-        INSERT INTO Booking (f_name, l_name, address_1, address_2, city, state, zip_code, phone, email, check_in, check_out, tier, capacity, checkin_key, room_id)
-        VALUES ({('?, '*15).removesuffix(', ')});
-        """, (f_name, l_name, address_1, address_2, city, state, zip_code, phone, email, check_in, check_out, tier, capacity, checkin_key, room_id))
+        INSERT INTO Booking (f_name, l_name, address_1, address_2, city, state, zip_code, phone, email, check_in, check_out, checkin_key, room_id)
+        VALUES ({('?, '*13).removesuffix(', ')});
+        """, (f_name, l_name, address_1, address_2, city, state, zip_code, phone, email, check_in, check_out, checkin_key, room_id))
         
         self.conn.commit()
 
@@ -135,15 +158,16 @@ class DataBase:
         
         items = ()
         bookings = []
+        print(where)
 
         if where is not None and len(where) > 0:
 
             where_query = ""
             for key, (sign, value) in where.items():
                 if value is not None:
-                    where_query += "{} {} ?, ".format(key, sign)
+                    where_query += "{} {} ? AND ".format(key, sign)
                     items += (value,)
-            where_query = where_query.removesuffix(", ")
+            where_query = where_query.removesuffix(" AND ")
             if len(items) > 0:
                 cursor.execute(f"""
                 SELECT * FROM Booking
@@ -154,7 +178,7 @@ class DataBase:
             SELECT * FROM Booking;
             """, items)
 
-            bookings = cursor.fetchall()
+            bookings = cursor.fetchone()
             
             self.conn.commit()
         else:
@@ -186,9 +210,9 @@ class DataBase:
         where_query = ""
         for key, (sign, value) in where.items():
             if value is not None:
-                where_query += "{} {} ?, ".format(key, sign)
+                where_query += "{} {} ? AND ".format(key, sign)
                 items += (value,)
-        where_query = where_query.removesuffix(", ")
+        where_query = where_query.removesuffix(" AND ")
 
         cursor.execute(f"""
         UPDATE Booking
@@ -207,9 +231,9 @@ class DataBase:
 
         where_query = ""
         for key, (sign, value) in where.items():
-            where_query += "{} {} ?, ".format(key, sign)
+            where_query += "{} {} ? AND ".format(key, sign)
             items += (value,)
-        where_query = where_query.removesuffix(", ")
+        where_query = where_query.removesuffix(" AND ")
 
         cursor.execute(f"""
         DELETE FROM Booking
@@ -220,16 +244,34 @@ class DataBase:
 
         cursor.close()
 
+    def check_date_overlap(self, check_in:str, check_out:str, room_id:int) -> bool:
+        cursor = self.conn.cursor()
+
+        cursor.execute("""
+        SELECT COUNT(*) FROM Booking WHERE
+        ((check_in <= ? AND check_out >= ?) OR
+        (check_in <= ? AND check_out >= ?) OR
+        (check_in >= ? AND check_out <= ?)) AND room_id = ?;
+        """,
+        (check_out, check_in, check_in, check_out, check_in, check_out, room_id))
+        overlap_count = cursor.fetchone()[0]
+        self.conn.commit()
+        cursor.close()
+
+        return overlap_count > 0
+
     def create_db(self):
         cursor = self.conn.cursor()
 
         # Define SQL commands to create tables if they do not exist
         create_tables_sql = """
-
         CREATE TABLE IF NOT EXISTS Room (
             id INTEGER PRIMARY KEY,
-            tier TEXT NOT NULL CHECK(tier IN ('basic', 'business', 'vip')),
-            capacity INTEGER NOT NULL CHECK(capacity IN (1, 2))
+            tier TEXT NOT NULL CHECK(tier IN ('basic', 'buciness', 'vip')),
+            capacity INTEGER NOT NULL CHECK(capacity IN (1, 2)),
+            smoking INTEGER NOT NULL,
+            kitchen INTEGER NOT NULL,
+            price REAL NOT NULL
         );
 
         CREATE TABLE IF NOT EXISTS Booking (
@@ -245,10 +287,8 @@ class DataBase:
             email TEXT NOT NULL,
             check_in DATE NOT NULL,
             check_out DATE NOT NULL,
-            tier TEXT NOT NULL CHECK(tier IN ('basic', 'buciness', 'vip')),
-            capacity INTEGER NOT NULL CHECK(capacity IN (1, 2)),
             checkin_key CHAR(64) NOT NULL,
-            room_id INTEGER UNIQUE,
+            room_id INTEGER NOT NULL,
             FOREIGN KEY (room_id) REFERENCES Room(id)
         );
         """
