@@ -297,7 +297,8 @@ class DataBase:
             check_out DATE NOT NULL,
             checkin_key CHAR(64) NOT NULL,
             room_id INTEGER NOT NULL,
-            FOREIGN KEY (room_id) REFERENCES Room(id)
+            FOREIGN KEY (room_id) REFERENCES Room(id),
+            CHECK (check_out > check_in)
         );
         """
 
