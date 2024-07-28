@@ -301,6 +301,29 @@ class DataBase:
             FOREIGN KEY (room_id) REFERENCES Room(id),
             CHECK (check_out > check_in)
         );
+
+        CREATE TRIGGER IF NOT EXISTS ensure_future_check_in
+        BEFORE INSERT ON Booking
+        FOR EACH ROW
+        BEGIN
+            SELECT
+                CASE
+                    WHEN NEW.check_in < DATE('now') THEN
+                        RAISE (ABORT, 'check_in must be after the current date')
+                END;
+        END;
+
+        CREATE TRIGGER IF NOT EXISTS ensure_future_check_in_update
+        BEFORE UPDATE ON Booking
+        FOR EACH ROW
+        BEGIN
+            SELECT
+                CASE
+                    WHEN NEW.check_in <= DATE('now') THEN
+                        RAISE (ABORT, 'check_in must be after the current date')
+                END;
+        END;
+
         """
 
         # Execute the SQL commands
