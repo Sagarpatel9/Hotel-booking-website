@@ -275,7 +275,7 @@ class DataBase:
         create_tables_sql = """
         CREATE TABLE IF NOT EXISTS Room (
             id INTEGER PRIMARY KEY,
-            tier TEXT NOT NULL CHECK(tier IN ('basic', 'buciness', 'vip')),
+            tier TEXT NOT NULL CHECK(tier IN ('basic', 'business', 'vip')),
             capacity INTEGER NOT NULL CHECK(capacity IN (1, 2)),
             smoking INTEGER NOT NULL,
             kitchen INTEGER NOT NULL,

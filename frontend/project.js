@@ -38,6 +38,7 @@ BOOKING_FORM.addEventListener("submit", async (e) => {
 
 function display_popup(key) {
     document.getElementById("popup-message").style.display = "block";
+    document.getElementById("thank-you-message").innerText = key;
     navigator.clipboard.writeText(key)
 }
 

@@ -31,7 +31,7 @@
             <form action="/roomlisting.html" method="GET">
                 <div class="form-group">
                     <label for="search-tier">Tier:</label>
-                    <select name="tier" id="search-tier">
+                    <select name="tier" id="search-tier" required>
                         <option value="" selected disabled>Tier</option>
                         <option value="basic">Basic</option>
                         <option value="business">Business</option>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label for="search-capacity">Capacity:</label>
-                    <select name="capacity" id="search-capacity">
+                    <select name="capacity" id="search-capacity" required>
                         <option value="" selected disabled>select bed</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
