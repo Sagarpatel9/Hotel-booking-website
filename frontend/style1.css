@@ -1,3 +1,4 @@
+/*Begining of css file*/
 
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes:wght@300;400;500;600;700&display=swap');
@@ -8,6 +9,11 @@
   box-sizing: border-box;
   font-family:'Times New Roman', Times, serif;
 }
+
+/* For each tabs the css styleing starts with capital letters, for example "HOME" to show stating of home tab styling and
+   ends with "END OF HOME" to present end of tab. Also, sub class is menioned in small letters*/
+
+
 
 
 
@@ -1376,22 +1382,4 @@ button:hover {
 /*END OF RESERVATION FORM*/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*End of css file*/
