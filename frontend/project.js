@@ -29,17 +29,40 @@ BOOKING_FORM.addEventListener("submit", async (e) => {
     });
 
     if (response["success"])
-        display_popup(`${urlParams.get("room_id")}-${randkey}`)
+        await display_popup(`${urlParams.get("room_id")}-${randkey}`)
     else {
         console.log(response)
         BOOKING_ERR.innerText = response["msg"];
     }
 })
 
-function display_popup(key) {
+async function display_popup(key) {
     document.getElementById("popup-message").style.display = "block";
     document.getElementById("thank-you-message").innerText = key;
-    navigator.clipboard.writeText(key)
+    await copyToClipboard(key);
+}
+
+async function copyToClipboard(textToCopy) {
+    // Navigator clipboard api requires https, so use workarround
+    if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(textToCopy);
+    } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = textToCopy;
+        textArea.style.position = "absolute";
+        textArea.style.left = "-999999px";
+            
+        document.body.prepend(textArea);
+        textArea.select();
+
+        try {
+            document.execCommand('copy');
+        } catch (error) {
+            console.error(error);
+        } finally {
+            textArea.remove();
+        }
+    }
 }
 
 // Function to close the popup message
