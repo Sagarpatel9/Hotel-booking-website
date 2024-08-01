@@ -7,6 +7,7 @@ window.addEventListener("load", async () => {
     
     
     const urlParams = new URLSearchParams(window.location.search);
+    // get rooms from URL search params
     let response = await API.room_get({
         tier: urlParams.get("tier"),
         capacity: Number(urlParams.get("capacity")),
@@ -14,7 +15,7 @@ window.addEventListener("load", async () => {
         kitchen: urlParams.get("kitchen") == "on" ? 1 : 0
     });
     for (let room of response) {
-        switch (room["tier"]) {
+        switch (room["tier"]) { // Emit html based on room tier
             case "basic":
                 SEARCH_RESULTS.innerHTML += `
                 <div class="room-listing">
@@ -134,6 +135,7 @@ window.addEventListener("load", async () => {
 })
 
 async function get_reserve_btn(check_in, check_out, room_id) {
+    // reserve button emitter.
     return !await API.check_date_overlap(check_in, check_out, room_id) ?
         `<button onclick="window.location='${checkout_page_url(check_in, check_out, room_id)}';" class="reserve-btn">RESERVE NOW</button>` :
         `<button class="already-reserved">Already Reserved</button>`;
@@ -141,10 +143,10 @@ async function get_reserve_btn(check_in, check_out, room_id) {
 
 
 function checkout_page_url(check_in, check_out, room_id) {
+    // creates the checkout page url
     let url = new URLSearchParams();
     url.append("check_in", check_in);
     url.append("check_out", check_out);
     url.append("room_id", room_id);
-    console.log("/reservenow.html?" + url.toString());
     return "/reservenow.html?" + url.toString();
 }

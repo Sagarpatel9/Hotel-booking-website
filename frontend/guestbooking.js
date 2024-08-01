@@ -2,14 +2,14 @@ import {API} from './gate.js'
 
 window.onload = async ()  => {
     const INFO = document.getElementById("guest-booking-info-section");
-    
+     // get fn and bid from session storage.
     const first_name = sessionStorage.getItem("first_name");
     const booking_id = sessionStorage.getItem("booking_id");
     let booking = await API.user_booking_get(first_name, booking_id);
     
-    if (typeof booking.success !== 'undefined') {
+    if (typeof booking.success !== 'undefined') { // check that request was successful
         INFO.innerText = booking.msg;
-    } else {
+    } else { // Show booking information
         let room = (await API.room_get({id:Number(booking.room_id)}))[0];
         INFO.innerHTML = `
         <div>

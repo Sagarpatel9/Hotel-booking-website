@@ -1,6 +1,7 @@
 // Easy api for crud operations on backend
 
 async function request(method, route, body) {
+	// boilerplate for requests
 	let ret = await (await fetch("/api" + route, {
 		method,
 		body:JSON.stringify(body),
@@ -32,8 +33,7 @@ export const API = {
 			room_id = -1
 		}
 	) {
-		console.log({f_name, l_name, address_1, address_2, city, state, zip_code, phone, email,
-			check_in, check_out, checkin_key, room_id})
+		// create a booking
 		let ret = await request("POST", "/user/booking", {f_name, l_name, address_1, address_2, city, state, zip_code, phone, email,
 			check_in, check_out, checkin_key, room_id})
 		
@@ -57,7 +57,7 @@ export const API = {
 			checkin_key = undefined,
 			room_id = undefined
 		}
-	) {
+	) { // Get a booking with admin permission
 		let ret = await request("PATCH", "/admin/booking", {booking:{f_name, l_name, address_1, address_2, city, state, zip_code, phone, email,
 			check_in, check_out, checkin_key, room_id}, login:{password}})
 		
@@ -65,14 +65,14 @@ export const API = {
 		
 		return ret;
 	},
-	async user_booking_get(name, password) {
+	async user_booking_get(name, password) {// get the user's booking
 		let ret = await request("PATCH", "/user/booking", {name, password})
 		
 		await this.reactive_callback(ret);
 		
 		return ret;
 	},
-	async user_booking_delete(name, password) {
+	async user_booking_delete(name, password) {// user delete's user booking
 		let ret = await request("DELETE", "/user/booking", {name, password})
 		
 		await this.reactive_callback(ret);
@@ -95,7 +95,7 @@ export const API = {
 			checkin_key = undefined,
 			room_id = undefined
 		}
-	) {
+	) { // update a booking
 		let ret = await request("PUT", "/admin/booking", {booking:{id, f_name, l_name, address_1, address_2, city, state, zip_code, phone, email,
 			check_in, check_out, checkin_key, room_id}, login:{password}})
 		
@@ -103,14 +103,14 @@ export const API = {
 		
 		return ret;
 	},
-	async admin_booking_delete(password, id) {
+	async admin_booking_delete(password, id) { // delete a booking
 		let ret = await request("DELETE", "/admin/booking", {booking:{id}, login:{password}})
 		
 		await this.reactive_callback(ret);
 		
 		return ret;
 	},
-	async check_date_overlap(check_in, check_out, room_id) {
+	async check_date_overlap(check_in, check_out, room_id) { // check for reservation date overlap
 		let ret = await request("POST", "/user/booking/checkdate", {check_in, check_out, room_id})
 		
 		await this.reactive_callback(ret["overlap"]);
@@ -129,7 +129,7 @@ export const API = {
 			kitchen = undefined,
 			number = undefined
 		}
-	) {
+	) { // create a room
 		let ret = await request("POST", "/admin/room", {room:{tier, capacity, price, smoking, kitchen, number}, login:{password}})
 		
 		await this.reactive_callback(ret);
@@ -146,14 +146,14 @@ export const API = {
 			price = undefined,
 			number = undefined
 		}
-	) {
+	) { // search for rooms
 		let ret = await request("POST", "/room/search", {id, tier, capacity, price, smoking, kitchen, number})
 		
 		await this.reactive_callback(ret);
 		
 		return ret;
 	},
-	async room_delete(password, id) {
+	async room_delete(password, id) { // delete a room
 		let ret = await request("DELETE", "/admin/room", {room:{id}, login:{password}})
 		
 		await this.reactive_callback(ret);

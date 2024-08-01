@@ -7,12 +7,13 @@ const BOOKING_ERR = document.getElementById("err-msg")
 // WILLIAM
 if (BOOKING_FORM !== null)
 BOOKING_FORM.addEventListener("submit", async (e) => {
+    // booking form submit handler
     e.preventDefault();
     const data = new FormData(e.target);
-
+    
     const urlParams = new URLSearchParams(window.location.search);
     let randkey = Math.random();
-    let response = await API.booking_create({
+    let response = await API.booking_create({ // make the request to the server via gate.js
         f_name: data.get("f_name"),
         l_name: data.get("l_name"),
         address_1: data.get("address_1"), 
@@ -29,6 +30,7 @@ BOOKING_FORM.addEventListener("submit", async (e) => {
     });
 
     if (response["success"])
+        // show room key and copy to clipboard
         await display_popup(`${urlParams.get("room_id")}-${randkey}`)
     else {
         console.log(response)
@@ -50,7 +52,7 @@ async function copyToClipboard(textToCopy) {
         const textArea = document.createElement("textarea");
         textArea.value = textToCopy;
         textArea.style.position = "absolute";
-        textArea.style.left = "-999999px";
+        textArea.style.left = "-999999px"; // hide textarea
             
         document.body.prepend(textArea);
         textArea.select();
@@ -68,7 +70,7 @@ async function copyToClipboard(textToCopy) {
 // Function to close the popup message
 function closePopup() {
     document.getElementById('popup-message').style.display = 'none';
-    window.location.href = 'index.html';
+    window.location.href = 'index.html';// on popup close reroute to index.html
 }
 
 document.getElementById("close-x")?.addEventListener("click", closePopup)

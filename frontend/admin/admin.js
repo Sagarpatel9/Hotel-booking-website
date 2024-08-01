@@ -12,9 +12,10 @@ window.onload = () => {
 }
 
 async function refresh() {
+    // Updates rooms and bookings if password is validated on the backend
     const rooms = await API.room_get({});
     const bookings = await API.admin_booking_get(PASSWORD_INPUT.value, {});
-    console.log(bookings);
+
     ROOM_LIST.innerHTML = `
     <tr>
         <th>ID</th>
@@ -28,7 +29,7 @@ async function refresh() {
     </tr>
     `
     for (let room of rooms) {
-
+        // create a room row.
         let row = document.createElement('tr');
         row.innerHTML = `
         <th>${room.id}</th>
@@ -39,6 +40,7 @@ async function refresh() {
         <th><input name="kitchen" type="checkbox" ${room.kitchen == 1 ? "checked" : ""} disabled></th>
         <th>${room.number}</th>
         `;
+        // add button manually so we can add on click handler
         let delcol = document.createElement('th')
         let button = document.createElement('button');
         delcol.appendChild(button)
@@ -70,7 +72,7 @@ async function refresh() {
     </tr>
     `
     for (let booking of bookings) {
-
+        // create a booking row
         let row = document.createElement('tr');
         row.innerHTML = `
         <th>${booking.id}</th>
@@ -88,6 +90,7 @@ async function refresh() {
         <th>${booking.checkin_key}</th>
         <th>${booking.room_id}</th>
         `;
+        // add button manually so we can add on click handler
         let delcol = document.createElement('th')
         let button_delete = document.createElement('button');
         delcol.appendChild(button_delete)
