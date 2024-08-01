@@ -1,3 +1,4 @@
+/*Begining of css file*/
 
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes:wght@300;400;500;600;700&display=swap');
@@ -8,6 +9,11 @@
   box-sizing: border-box;
   font-family:'Times New Roman', Times, serif;
 }
+
+/* For each tabs the css styleing starts with capital letters, for example "HOME" to show stating of home tab styling and
+   ends with "END OF HOME" to present end of tab. Also, sub class is menioned in small letters*/
+
+
 
 
 
@@ -121,6 +127,9 @@ section.active {
 /* END OF TOP NAVIGATION BAR*/
 
 
+
+
+
 /*HOME*/
 .intro-section {
   display: block; 
@@ -131,7 +140,7 @@ section.active {
   background-size: cover;
   color: #ffffff;
   height: 100vh; 
-  border: none; /* Ensure no border */
+  border: none; 
 }
 
 /* Content box styling */
@@ -158,37 +167,37 @@ section.active {
 /* Slideshow for home page */
 .slideshow-section {
   display: block;
-  margin-top: 180px; /* Add margin to move slideshow down */
-  text-align: center; /* Center align the section */
+  margin-top: 180px; 
+  text-align: center; 
   background-color: #ffffff;
 }
 
 .slideshow-heading {
   font-size: 2em;
   margin-bottom: 20px;
-  color: #000000; /* Match topnav color */
-  font-family: 'Arial', sans-serif; /* Decorative font */
+  color: #000000; 
+  font-family: 'Arial', sans-serif; 
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .slideshow-container {
-  max-width: 700px; /* Make slideshow smaller */
+  max-width: 700px; 
   position: relative;
   margin: auto;
-  overflow: hidden; /* Hide overflow for rounded corners */
-  border: 10px solid; /* Adjust the width of the border */
-  border-image-source: linear-gradient(45deg, #fcc6e1, #ffffff, #000000); /* Gradient border */
-  border-image-slice: 1; /* Use the full image for the border */
+  overflow: hidden; 
+  border: 10px solid; 
+  border-image-source: linear-gradient(45deg, #fcc6e1, #ffffff, #000000); 
+  border-image-slice: 1; 
 }
 
 .slideshow-inner {
-  overflow: hidden; /* Hide overflow for rounded corners */
-  background-color: #ffffff; /* Background color for inner container */
+  overflow: hidden; 
+  background-color: #ffffff; 
 }
 
 .mySlides {
-  display: none; /* Hide slides by default */
-  position: relative; /* Position relative for slide titles */
+  display: none; 
+  position: relative; 
 }
 
 .slide-title {
@@ -229,12 +238,12 @@ section.active {
 }
 
 .dot.active {
-  background-color: #e4cbcb; /* Match active dot color with topnav color */
+  background-color: #e4cbcb; 
 }
 
 /* Additional decorative styles */
 .slideshow-container img {
-  border-radius: 0; /* Remove border radius from images */
+  border-radius: 0; 
 }
 
 .dot-container {
@@ -243,13 +252,13 @@ section.active {
 }
 
 .dot {
-  cursor: pointer; /* Change cursor to pointer for dots */
-  border: 1px solid #e4cbcb; /* Add border to dots */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow to dots */
+  cursor: pointer; 
+  border: 1px solid #e4cbcb; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .dot:hover {
-  background-color: #e4cbcb; /* Change color on hover to match topnav */
+  background-color: #e4cbcb;
 }
 
 
@@ -264,9 +273,9 @@ section.active {
 }
 
 .features-section h2 {
-  color: #000000; /* Match topnav color */
-  font-family: 'Arial', sans-serif; /* Decorative font */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add text shadow */
+  color: #000000; 
+  font-family: 'Arial', sans-serif; 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
   text-align: center;
   margin-bottom: 20px;
 }
@@ -281,39 +290,39 @@ section.active {
 
 .feature {
   background-color: #ffffff;
-  padding: 30px; /* Increased padding */
+  padding: 30px; 
   border-radius: 10px;
-  margin: 15px; /* Increased margin */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  margin: 15px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   text-align: center;
-  width: 350px; /* Increased width */
+  width: 350px; 
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .feature img {
   width: 100%;
   height: auto;
-  max-height: 250px; /* Set a max height for the images */
+  max-height: 250px; 
   border-radius: 10px;
 }
 
 .feature h3 {
   color: #333;
   margin: 15px 0 10px;
-  font-size: 1.5em; /* Increased font size */
+  font-size: 1.5em; 
 }
 
 .feature p {
   color: #666;
-  font-size: 1.1em; /* Increased font size */
+  font-size: 1.1em; 
 }
 
 .feature:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
 }
 
-/* Testimonial Section */
+
 
 /* Testimonial Section */
 .testimonial-section {
@@ -395,8 +404,10 @@ section.active {
   width: 30px;
   height: 30px;
 }
-
 /* END OF HOME*/
+
+
+
 
 
 /*ABOUT US*/
@@ -556,7 +567,7 @@ section.active {
   color: #333;
 }
 
-/*glims of room(romm type)*/
+/*glims of room(room type)*/
 .glimpse-of-rooms {
   display: block;
   padding: 50px 20px;
@@ -659,6 +670,8 @@ section.active {
   color: #333;
 }
 /* END OF ABOUT US */
+
+
 
 
 
@@ -795,13 +808,13 @@ section.active {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 60px); /* Adjusted for the height of the navigation bar */
+  height: calc(100vh - 60px); 
   background: #ffffff;
 }
 
 .card {
   background: #fff;
-  border: 2px solid #e4cbcb; /* Added pink border */
+  border: 2px solid #e4cbcb; 
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -874,8 +887,8 @@ section.active {
   transform: scale(0.95);
 }
 
-
 /*END OF RESERVATION TAB IN TOP NAV*/
+
 
 
 
@@ -1002,9 +1015,8 @@ section.active {
 
 
 
+
 /* ROOM LISTING*/
-
-
 .room-listing {
   display: flex;
   flex-wrap: wrap;
@@ -1175,6 +1187,8 @@ button.next {
 }
 
 /* END OF ROOM LISTING*/
+
+
 
 
 
@@ -1361,30 +1375,11 @@ button:hover {
   }
 }
 
-/* Optional: Adding margin between paragraphs */
 .popup-content p {
-  margin-bottom: 1em; /* Add space between paragraphs */
+  margin-bottom: 1em; 
 }
 
 /*END OF RESERVATION FORM*/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*End of css file*/
