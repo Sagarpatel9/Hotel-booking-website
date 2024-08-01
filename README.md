@@ -1,6 +1,6 @@
 # CPSC-362-group-project
 
-> William L., Sagar Patel, Bao Nguyen, Dalen Ha
+> William L., Sagarkumar Patel, Bao Nguyen, Dalen Ha
 
 To run the web app you must have docker installed and running.  You must also have port 80 available on your machine/server.
 
