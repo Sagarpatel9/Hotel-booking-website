@@ -16,13 +16,13 @@ class DataBase:
         items = ()
 
         set_query = ""
-
+        # create update query
         for key, value in updates.items():
             items += (value,)
             set_query += "{} = ? AND ".format(key)
 
         set_query = set_query.removesuffix(" AND ")
-
+        # create where query
         where_query = ""
         for key, (sign, value) in where.items():
             where_query += "{} {} ? AND ".format(key, sign)
@@ -43,7 +43,7 @@ class DataBase:
         cursor = self.conn.cursor()
         
         items = ()
-
+        # create where query
         where_query = ""
         for key, (sign, value) in where.items():
             where_query += "{} {} ? AND ".format(key, sign)
@@ -67,7 +67,7 @@ class DataBase:
 
 
         if where is not None and len(where) > 0:
-
+            # create where query
             where_query = ""
             for key, (sign, value) in where.items():
                 if value is not None:
@@ -99,6 +99,7 @@ class DataBase:
 
     def create_room(self, tier:Literal['basic'] | Literal['buciness'] | Literal['vip'], capacity:Literal[1] | Literal[2],
         smoking: bool, kitchen: bool, price: float, number:int):
+        # throw if something is missing
         for arg in [tier, capacity, smoking, kitchen, price, number]:
             if arg == None:
                 raise RuntimeError("Missing Arguments")
@@ -116,6 +117,7 @@ class DataBase:
 
     def create_booking(self, f_name:str, l_name:str, address_1:str, address_2:str, city:str, state:str, zip_code:str, phone:str, email:str, check_in:str, check_out:str, 
                     checkin_key:str, room_id:int = -1):
+        # throw if something is missing.
         for arg in [f_name, l_name, address_1, address_2, city, state, zip_code, phone, email, check_in, check_out, checkin_key, room_id]:
             if arg is None:
                 raise RuntimeError("Missing required booking info.")
@@ -136,7 +138,7 @@ class DataBase:
             self.conn.commit()
 
         cursor.close()
-
+        # Throw if booking dates overlap
         if self.check_date_overlap(check_in, check_out, room_id):
             raise RuntimeError("Your check-in and check-out times for the requested room overlap with another guest's check-in and check-out times for that room.")
 
@@ -155,6 +157,7 @@ class DataBase:
 
     def get_booking(self, where:dict[str, tuple[Literal["=", "<", ">", ">=", "<="], str|int]]):
         rem_list = []
+        # remove Nones
         for k, (s, v) in where.items():
             if v is None:
                 rem_list.append(k)
@@ -169,7 +172,7 @@ class DataBase:
         print(where)
 
         if where is not None and len(where) > 0:
-
+            # create where query
             where_query = ""
             for key, (sign, value) in where.items():
                 if value is not None:
@@ -207,14 +210,14 @@ class DataBase:
         items = ()
 
         set_query = ""
-
+        # create set
         for key, value in updates.items():
             if value is not None:
                 items += (value,)
                 set_query += "{} = ?, ".format(key)
 
         set_query = set_query.removesuffix(", ")
-
+        # create where query
         where_query = ""
         for key, (sign, value) in where.items():
             if value is not None:
@@ -236,7 +239,7 @@ class DataBase:
         cursor = self.conn.cursor()
         
         items = ()
-
+        # create where query
         where_query = ""
         for key, (sign, value) in where.items():
             where_query += "{} {} ? AND ".format(key, sign)

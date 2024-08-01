@@ -16,6 +16,7 @@ load_dotenv()
 
 DB = DataBase()
 
+# create internal admin password via environment variable
 ___h = hashlib.sha256()
 ___h.update(os.environ["ADMIN_PASSWORD"].encode())
 
@@ -67,6 +68,7 @@ class UserLogin(BaseModel):
     password: str
 
 def validate_admin_login(login: AdminLogin):
+    # sha256 hash the admin login and validate.
     _admin_login = AdminLogin(**login.model_dump())
     h = hashlib.sha256()
     h.update(_admin_login.password.encode())
@@ -74,6 +76,7 @@ def validate_admin_login(login: AdminLogin):
     return password_hash == ADMIN_PASSWORD
 
 def hash_str(inp:str):
+    # utility func for hashing strings with sha256
     h = hashlib.sha256()
     h.update(inp.encode())
     return h.hexdigest()
@@ -84,6 +87,7 @@ def hash_str(inp:str):
 async def create_room(login: AdminLogin, room: RoomModel):
     if validate_admin_login(login):
         try:
+            # create room and propagate errors
             DB.create_room(room.tier.value, room.capacity, room.smoking, room.kitchen, room.price, room.number)
         except RuntimeError as e:
             return {"success": False, "msg": str(e)}
@@ -97,9 +101,9 @@ async def create_room(login: AdminLogin, room: RoomModel):
 async def delete_room(login: AdminLogin, room: RoomModel):
     if validate_admin_login(login):
         try:
+            # delete room and propagate errors
             DB.delete_room({'id':('=', room.id)})
         except Exception as e:
-            print(e)
             return {"success": False, "msg": "Failed to delete room."}
         return {"success":True}
     else:
@@ -110,6 +114,7 @@ async def delete_room(login: AdminLogin, room: RoomModel):
 async def create_booking(login: AdminLogin, booking: Booking):
     if validate_admin_login(login):
         try:
+            # create booking and propagate errors
             DB.create_booking(booking.f_name, booking.l_name, booking.address_1, booking.address_2,
                 booking.city, booking.state, booking.zip_code, booking.phone, booking.email, booking.check_in,
                 booking.check_out, hash_str(booking.checkin_key), booking.room_id)
@@ -125,6 +130,7 @@ async def create_booking(login: AdminLogin, booking: Booking):
 async def get_booking(login: AdminLogin, booking: Booking):
     if validate_admin_login(login):
         try:
+            # get booking and propagate errors
             return DB.get_booking({'f_name':('=',booking.f_name), 'l_name':('=',booking.l_name), 'address_1':('=',booking.address_1), 'address_2':('=',booking.address_2),
                 'city':('=',booking.city), 'state':('=',booking.state), 'zip_code':('=',booking.zip_code), 'phone':('=',booking.phone), 'email':('=',booking.email),
                 'check_in':('=',booking.check_in), 'check_out':('=',booking.check_out),
@@ -136,10 +142,10 @@ async def get_booking(login: AdminLogin, booking: Booking):
     
 @app.patch('/user/booking')
 async def user_get_booking(login:UserLogin):
-    print(login)
     try:
+        # get booking and propagate errors
         b_list = DB.get_booking({'f_name':('=',login.name), 'checkin_key':('=',hash_str(login.password))})
-        if b_list == None or len(b_list) == 0:
+        if b_list == None or len(b_list) == 0:# if no bookings show up then bad login
             return {"success": False, "msg": "Failed to get booking.  Could not find a booking with the provided name and check-in key."}
         return b_list
     except Exception as e:
@@ -148,6 +154,7 @@ async def user_get_booking(login:UserLogin):
 @app.post('/user/booking')
 async def user_create_booking(booking: Booking):
     try:
+        # create booking and propagate errors
         DB.create_booking(booking.f_name, booking.l_name, booking.address_1, booking.address_2,
             booking.city, booking.state, booking.zip_code, booking.phone, booking.email, booking.check_in,
             booking.check_out, hash_str(booking.checkin_key), booking.room_id)
@@ -160,6 +167,7 @@ async def user_create_booking(booking: Booking):
 @app.delete('/user/booking')
 async def user_delete_booking(login:UserLogin):
     try:
+        # delete booking and propagate errors
         DB.delete_booking({'f_name':('=',login.name), 'checkin_key':('=',hash_str(login.password))})
     except RuntimeError as e:
         return {"success": False, "msg": str(e)}
@@ -174,12 +182,14 @@ class CheckDate(BaseModel):
 
 @app.post('/user/booking/checkdate')
 async def user_check_date(body: CheckDate):
+    # check date overlap
     return {"overlap":DB.check_date_overlap(body.check_in, body.check_out, body.room_id)}
     
 @app.put('/admin/booking')
 async def update_booking(login: AdminLogin, booking: Booking):
     if validate_admin_login(login):
         try:
+            # update booking and propagate errors
             DB.update_booking({'f_name':booking.f_name, 'l_name':booking.l_name, 'address_1':booking.address_1, 'address_2':booking.address_2,
                 'city':booking.city, 'state':booking.state, 'zip_code':booking.zip_code, 'phone':booking.phone, 'email':booking.email,
                 'check_in':booking.check_in, 'check_out':booking.check_out,
@@ -196,6 +206,7 @@ async def update_booking(login: AdminLogin, booking: Booking):
 async def admin_delete_booking(login: AdminLogin, booking: Booking):
     if validate_admin_login(login):
         try:
+            # delete booking and propagate errors
             DB.delete_booking({'id':('=', booking.id)})
         except Exception as e:
             print(e)

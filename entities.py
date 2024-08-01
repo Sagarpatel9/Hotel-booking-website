@@ -3,6 +3,7 @@ from pydantic import BaseModel, PositiveInt
 from typing import Literal, Optional
 
 
+# data validation models
 
 class RoomTier(str, Enum):
     basic = "basic"
