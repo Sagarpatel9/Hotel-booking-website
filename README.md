@@ -16,4 +16,4 @@ After that its as easy as:
 docker-compose up --build
 ```
 
-You should then be able to use the web app at http://localhost/ in your browser.
+Demo: https://www.youtube.com/watch?v=P--2KETBi6s 
